@@ -1,0 +1,226 @@
+import { useState, useEffect } from 'react'
+import emailjs from '@emailjs/browser'
+import { services } from '../data/services'
+import styles from '../styles/Contact.module.css'
+
+const INITIAL_FORM = { name: '', email: '', service: '', budget: '', message: '' }
+
+const SERVICE_OPTIONS = services.flatMap(({ tier, items }) =>
+  items.map(item => ({ value: item.name, label: `${item.name} (${tier})` }))
+)
+
+const BUDGET_OPTIONS = [
+  'Under $500',
+  '$500 – $1,500',
+  '$1,500 – $5,000',
+  '$5,000+',
+  'Not sure yet',
+]
+
+export default function Contact() {
+  const [form, setForm]     = useState(INITIAL_FORM)
+  const [status, setStatus] = useState('idle')
+
+  useEffect(() => {
+    function handlePreselect(e) {
+      setForm(prev => ({ ...prev, service: e.detail.service, message: e.detail.message }))
+    }
+    window.addEventListener('preselect-service', handlePreselect)
+    return () => window.removeEventListener('preselect-service', handlePreselect)
+  }, [])
+
+  function handleChange(e) {
+    const { name, value } = e.target
+    setForm(prev => ({ ...prev, [name]: value }))
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    setStatus('sending')
+
+    const templateParams = {
+      from_name:  form.name,
+      from_email: form.email,
+      service:    form.service || 'Not specified',
+      budget:     form.budget  || 'Not specified',
+      message:    form.message,
+    }
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+      )
+      setStatus('success')
+      setForm(INITIAL_FORM)
+    } catch {
+      setStatus('error')
+    }
+  }
+
+  const isSending = status === 'sending'
+
+  return (
+    <section id="contact" className={styles.section}>
+      <div className={`container ${styles.inner}`}>
+
+        <div className={styles.info}>
+          <span className={styles.eyebrow}>Get in touch</span>
+          <h2 className={styles.heading}>Let&apos;s Work Together</h2>
+          <p className={styles.sub}>
+            Have a project in mind? Fill in the form and I&apos;ll get back to you
+            within one business day.
+          </p>
+
+          <ul className={styles.details}>
+            <li className={styles.detail}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <polyline points="22,6 12,13 2,6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <a href="mailto:gervaserasmus1994@gmail.com" className={styles.detailLink}>
+                gervaserasmus1994@gmail.com
+              </a>
+            </li>
+            <li className={styles.detail}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+                <polyline points="12,6 12,12 16,14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span>Response within 1 business day</span>
+            </li>
+          </ul>
+        </div>
+
+        <div className={styles.formWrap}>
+          {status === 'success' ? (
+            <div className={styles.successBox} role="status">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+                <path d="M8 12l3 3 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <h3>Message sent!</h3>
+              <p>Thanks for reaching out. I&apos;ll be in touch shortly.</p>
+              <button className={styles.resetBtn} onClick={() => setStatus('idle')}>
+                Send another
+              </button>
+            </div>
+          ) : (
+            <form
+              className={styles.form}
+              onSubmit={handleSubmit}
+              noValidate
+              aria-label="Contact form"
+            >
+              <div className={styles.row}>
+                <div className={styles.field}>
+                  <label htmlFor="name" className={styles.label}>Name</label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    className={styles.input}
+                    placeholder="Jane Smith"
+                    value={form.name}
+                    onChange={handleChange}
+                    required
+                    autoComplete="name"
+                  />
+                </div>
+                <div className={styles.field}>
+                  <label htmlFor="email" className={styles.label}>Email</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    className={styles.input}
+                    placeholder="jane@company.com"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                    autoComplete="email"
+                  />
+                </div>
+              </div>
+
+              <div className={styles.field}>
+                <label htmlFor="service" className={styles.label}>
+                  Service <span className={styles.optional}>(optional)</span>
+                </label>
+                <select
+                  id="service"
+                  name="service"
+                  className={`${styles.input} ${styles.select}`}
+                  value={form.service}
+                  onChange={handleChange}
+                >
+                  <option value="">Select a service…</option>
+                  {SERVICE_OPTIONS.map(({ value, label }) => (
+                    <option key={value} value={value}>{label}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className={styles.field}>
+                <label htmlFor="budget" className={styles.label}>
+                  Budget <span className={styles.optional}>(optional)</span>
+                </label>
+                <select
+                  id="budget"
+                  name="budget"
+                  className={`${styles.input} ${styles.select}`}
+                  value={form.budget}
+                  onChange={handleChange}
+                >
+                  <option value="">Select a range…</option>
+                  {BUDGET_OPTIONS.map(opt => (
+                    <option key={opt} value={opt}>{opt}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className={styles.field}>
+                <label htmlFor="message" className={styles.label}>Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  className={`${styles.input} ${styles.textarea}`}
+                  placeholder="Tell me about your project…"
+                  value={form.message}
+                  onChange={handleChange}
+                  required
+                  rows={5}
+                />
+              </div>
+
+              {status === 'error' && (
+                <p className={styles.errorMsg} role="alert">
+                  Something went wrong. Please try again or email me directly.
+                </p>
+              )}
+
+              <button
+                type="submit"
+                className={styles.submitBtn}
+                disabled={isSending}
+                aria-busy={isSending}
+              >
+                {isSending ? (
+                  <>
+                    <span className={styles.spinner} aria-hidden="true" />
+                    Sending…
+                  </>
+                ) : (
+                  'Send Message'
+                )}
+              </button>
+            </form>
+          )}
+        </div>
+
+      </div>
+    </section>
+  )
+}

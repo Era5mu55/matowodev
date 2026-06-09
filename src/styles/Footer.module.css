@@ -1,0 +1,147 @@
+/* ── Footer shell ── */
+.footer {
+  background-color: var(--color-surface-2);
+  border-block-start: 1px solid var(--color-border);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-block: 3rem 2rem;
+}
+
+/* ── Top: brand + nav + social ── */
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ── Brand ── */
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.logo {
+  font-family: 'Courier New', monospace;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+  transition: opacity 0.2s;
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
+
+.logoAccent {
+  color: var(--color-accent);
+}
+
+.tagline {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  max-width: 360px;
+  line-height: 1.6;
+}
+
+/* ── Nav ── */
+.navLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+}
+
+.navLink {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  transition: color 0.2s;
+}
+
+.navLink:hover {
+  color: var(--color-text);
+}
+
+/* ── Social ── */
+.social {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  color: var(--color-muted);
+  transition: color 0.2s, border-color 0.2s, background-color 0.2s;
+}
+
+.socialLink:hover {
+  color: var(--color-text);
+  border-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ── Bottom: copyright + back to top ── */
+.bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding-block-start: 1.5rem;
+  border-block-start: 1px solid var(--color-border);
+}
+
+.copy {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.backToTop {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  transition: color 0.2s;
+}
+
+.backToTop:hover {
+  color: var(--color-text);
+}
+
+/* ── Tablet ── */
+@media (min-width: 768px) {
+  .top {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+
+  .bottom {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* ── Desktop ── */
+@media (min-width: 1100px) {
+  .inner {
+    gap: 2.5rem;
+    padding-block: 4rem 2.5rem;
+  }
+
+  .brand {
+    max-width: 280px;
+  }
+}

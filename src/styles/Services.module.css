@@ -1,0 +1,309 @@
+/* ── Section ── */
+.section {
+  background-color: var(--color-bg);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.heading {
+  color: var(--color-text);
+}
+
+.sub {
+  max-width: 480px;
+  color: var(--color-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ── Tier groups ── */
+.tiers {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.tier {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ── Tier label ── */
+.tierLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tier-color, var(--color-muted));
+}
+
+.tierDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--tier-color, var(--color-muted));
+  flex-shrink: 0;
+}
+
+/* ── Items grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+/* ── Item card ── */
+.item {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.item:hover {
+  border-color: rgba(79, 70, 229, 0.3);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+}
+
+.itemOpen {
+  border-color: rgba(79, 70, 229, 0.45);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Item top row ── */
+.itemTop {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.itemName {
+  font-size: 0.975rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.3;
+  flex: 1;
+}
+
+/* ── Pricing ── */
+.pricing {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.1rem;
+  flex-shrink: 0;
+}
+
+.priceTsh {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.priceUsd {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+/* ── Chevron ── */
+.chevron {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--color-muted);
+  margin-top: 0.2rem;
+  transition: transform 0.3s ease, color 0.2s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+  color: var(--color-accent);
+}
+
+/* ── Item description ── */
+.itemDesc {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+/* ── Accordion expand (CSS grid trick — smooth at any content height) ── */
+.expandWrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+}
+
+.expandOpen {
+  grid-template-rows: 1fr;
+}
+
+.expandInner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.expandContent {
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 0.4rem;
+}
+
+/* ── What's included list ── */
+.included {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.includedItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+.checkIcon {
+  flex-shrink: 0;
+}
+
+/* ── Timeline row ── */
+.timelineRow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.timelineValue {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* ── Card action buttons ── */
+.cardActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding-top: 0.25rem;
+}
+
+.btnQuote,
+.btnWhatsApp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.2rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: opacity 0.2s, transform 0.2s;
+  flex: 1;
+  min-width: 120px;
+}
+
+.btnQuote {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+
+.btnQuote:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.btnWhatsApp {
+  background-color: rgba(16, 185, 129, 0.12);
+  color: var(--color-cta);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.btnWhatsApp:hover {
+  background-color: rgba(16, 185, 129, 0.2);
+  transform: translateY(-1px);
+}
+
+/* ── Bottom note ── */
+.note {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.noteLink {
+  color: var(--color-accent);
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.noteLink:hover {
+  opacity: 0.8;
+}
+
+/* ── Tablet: 2-column items grid ── */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .btnQuote,
+  .btnWhatsApp {
+    flex: none;
+    min-width: 0;
+  }
+}
+
+/* ── Desktop: auto-fill up to 3 columns ── */
+@media (min-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .tiers {
+    gap: 3rem;
+  }
+}
