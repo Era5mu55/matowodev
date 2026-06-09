@@ -44,7 +44,7 @@ function useTypewriter() {
 
 export default function Hero() {
   const typedText = useTypewriter()
-  const { bio, cta, available, stats, identity, subtitle } = heroData
+  const { bio, seoText, cta, available, stats, identity, subtitle } = heroData
 
   return (
     <section className={styles.hero} id="home" aria-label="Introduction">
@@ -95,6 +95,8 @@ export default function Hero() {
               </div>
             ))}
           </div>
+
+          <p className={styles.seoText}>{seoText}</p>
 
         </div>
 
