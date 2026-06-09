@@ -3,19 +3,11 @@ import emailjs from '@emailjs/browser'
 import { services } from '../data/services'
 import styles from '../styles/Contact.module.css'
 
-const INITIAL_FORM = { name: '', email: '', service: '', budget: '', message: '' }
+const INITIAL_FORM = { name: '', email: '', projectType: '', message: '' }
 
 const SERVICE_OPTIONS = services.flatMap(({ tier, items }) =>
   items.map(item => ({ value: item.name, label: `${item.name} (${tier})` }))
 )
-
-const BUDGET_OPTIONS = [
-  'Under $500',
-  '$500 – $1,500',
-  '$1,500 – $5,000',
-  '$5,000+',
-  'Not sure yet',
-]
 
 export default function Contact() {
   const [form, setForm]     = useState(INITIAL_FORM)
@@ -23,7 +15,7 @@ export default function Contact() {
 
   useEffect(() => {
     function handlePreselect(e) {
-      setForm(prev => ({ ...prev, service: e.detail.service, message: e.detail.message }))
+      setForm(prev => ({ ...prev, projectType: e.detail.service, message: e.detail.message }))
     }
     window.addEventListener('preselect-service', handlePreselect)
     return () => window.removeEventListener('preselect-service', handlePreselect)
@@ -39,11 +31,10 @@ export default function Contact() {
     setStatus('sending')
 
     const templateParams = {
-      from_name:  form.name,
-      from_email: form.email,
-      service:    form.service || 'Not specified',
-      budget:     form.budget  || 'Not specified',
-      message:    form.message,
+      name:         form.name,
+      email:        form.email,
+      project_type: form.projectType || 'Not specified',
+      message:      form.message,
     }
 
     try {
@@ -146,37 +137,19 @@ export default function Contact() {
               </div>
 
               <div className={styles.field}>
-                <label htmlFor="service" className={styles.label}>
-                  Service <span className={styles.optional}>(optional)</span>
+                <label htmlFor="projectType" className={styles.label}>
+                  Project type <span className={styles.optional}>(optional)</span>
                 </label>
                 <select
-                  id="service"
-                  name="service"
+                  id="projectType"
+                  name="projectType"
                   className={`${styles.input} ${styles.select}`}
-                  value={form.service}
+                  value={form.projectType}
                   onChange={handleChange}
                 >
-                  <option value="">Select a service…</option>
+                  <option value="">Select a project type…</option>
                   {SERVICE_OPTIONS.map(({ value, label }) => (
                     <option key={value} value={value}>{label}</option>
-                  ))}
-                </select>
-              </div>
-
-              <div className={styles.field}>
-                <label htmlFor="budget" className={styles.label}>
-                  Budget <span className={styles.optional}>(optional)</span>
-                </label>
-                <select
-                  id="budget"
-                  name="budget"
-                  className={`${styles.input} ${styles.select}`}
-                  value={form.budget}
-                  onChange={handleChange}
-                >
-                  <option value="">Select a range…</option>
-                  {BUDGET_OPTIONS.map(opt => (
-                    <option key={opt} value={opt}>{opt}</option>
                   ))}
                 </select>
               </div>
