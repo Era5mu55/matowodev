@@ -46,6 +46,7 @@ export default function Hero() {
   const typedText = useTypewriter()
   const { bio, seoText, cta, available, stats, identity, subtitle } = heroData
 
+
   return (
     <section className={styles.hero} id="home" aria-label="Introduction">
       <div className={styles.bg} aria-hidden="true" />
@@ -82,8 +83,11 @@ export default function Hero() {
             <a href={cta.primary.href} className={styles.btnPrimary}>
               {cta.primary.label}
             </a>
-            <a href={cta.secondary.href} className={styles.btnOutline}>
+            <a href={cta.secondary.href} className={styles.btnCta}>
               {cta.secondary.label}
+            </a>
+            <a href={cta.tertiary.href} className={styles.btnOutline}>
+              {cta.tertiary.label}
             </a>
           </div>
 

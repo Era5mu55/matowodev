@@ -103,8 +103,30 @@
   transform: translateY(0);
 }
 
-.ctaDesktop {
+.ctaGroup {
   display: none;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quoteBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.25rem;
+  background-color: var(--color-cta);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: var(--radius-md);
+  transition: opacity 0.2s, transform 0.2s;
+  white-space: nowrap;
+}
+
+.quoteBtn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
 }
 
 .ctaMobileItem {
@@ -183,8 +205,8 @@
     display: none;
   }
 
-  .ctaDesktop {
-    display: inline-flex;
+  .ctaGroup {
+    display: flex;
   }
 
   .hamburger {

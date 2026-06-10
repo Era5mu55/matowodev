@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import styles from '../styles/Navbar.module.css'
 
 const NAV_LINKS = [
-  { label: 'Work',     href: '#work' },
-  { label: 'Services', href: '#services' },
-  { label: 'Contact',  href: '#contact' },
+  { label: 'Work',     href: '/#work' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Contact',  href: '/#contact' },
 ]
 
 export default function Navbar() {
-  const [scrolled, setScrolled]   = useState(false)
-  const [menuOpen, setMenuOpen]   = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -22,7 +23,7 @@ export default function Navbar() {
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <nav className={styles.nav} aria-label="Main navigation">
-        <a href="#" className={styles.logo} onClick={closeMenu}>
+        <a href="/" className={styles.logo} onClick={closeMenu}>
           Matowo <span className={styles.logoAccent}>Dev</span>
         </a>
 
@@ -38,15 +39,25 @@ export default function Navbar() {
             </li>
           ))}
           <li className={styles.ctaMobileItem}>
-            <a href="#contact" className={styles.cta} onClick={closeMenu}>
+            <Link to="/quote" className={styles.quoteBtn} onClick={closeMenu}>
+              Get a Quote
+            </Link>
+          </li>
+          <li className={styles.ctaMobileItem}>
+            <a href="/#contact" className={styles.cta} onClick={closeMenu}>
               Hire Me
             </a>
           </li>
         </ul>
 
-        <a href="#contact" className={`${styles.cta} ${styles.ctaDesktop}`}>
-          Hire Me
-        </a>
+        <div className={styles.ctaGroup}>
+          <Link to="/quote" className={styles.quoteBtn}>
+            Get a Quote
+          </Link>
+          <a href="/#contact" className={styles.cta}>
+            Hire Me
+          </a>
+        </div>
 
         <button
           className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ''}`}

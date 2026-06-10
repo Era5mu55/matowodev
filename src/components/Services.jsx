@@ -1,8 +1,19 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { services } from '../data/services'
 import { useExchangeRates, useCurrencyPref, formatPrice } from '../utils/currency'
 import CurrencySwitcher from './CurrencySwitcher'
 import styles from '../styles/Services.module.css'
+
+const QUOTE_IDS = {
+  'Blog / WordPress Site':         'blog',
+  'Landing Page':                  'landing',
+  'Business / Corporate Website':  'corporate',
+  'Portfolio Website':             'portfolio',
+  'E-Commerce (Basic)':            'ecommerce-basic',
+  'Web Application (Custom)':      'webapp',
+  'E-Commerce (Advanced)':         'ecommerce-advanced',
+}
 
 const TIER_META = {
   Starter:      { color: 'var(--color-muted)',  label: 'Starter' },
@@ -14,11 +25,7 @@ const TIER_META = {
 function ServiceCard({ name, baseUsd, monthly, desc, included, timeline, whatsapp_msg, isOpen, onToggle, rates, currency }) {
   const waUrl = `https://wa.me/255753437557?text=${encodeURIComponent(whatsapp_msg)}`
   const displayPrice = formatPrice(baseUsd, currency, rates, monthly ?? false)
-
-  function handleGetQuote(e) {
-    e.stopPropagation()
-    window.dispatchEvent(new CustomEvent('preselect-service', { detail: { service: name, message: whatsapp_msg } }))
-  }
+  const quoteHref = QUOTE_IDS[name] ? `/quote?service=${QUOTE_IDS[name]}` : '/quote'
 
   return (
     <article
@@ -69,9 +76,9 @@ function ServiceCard({ name, baseUsd, monthly, desc, included, timeline, whatsap
             </div>
 
             <div className={styles.cardActions} onClick={e => e.stopPropagation()}>
-              <a href="#contact" className={styles.btnQuote} onClick={handleGetQuote}>
+              <Link to={quoteHref} className={styles.btnQuote}>
                 Get a Quote
-              </a>
+              </Link>
               <a
                 href={waUrl}
                 target="_blank"
