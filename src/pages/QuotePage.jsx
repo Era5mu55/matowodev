@@ -66,6 +66,11 @@ export default function QuotePage() {
   const urgentSurchargeUsd = urgent ? Math.round(subtotalUsd * 0.2) : 0
   const totalUsd = subtotalUsd + urgentSurchargeUsd
 
+  const fp = (usd) => formatPrice(usd, currency, rates)
+  const addonLabels = selectedAddons
+    .map(id => ADDONS.find(a => a.id === id)?.label)
+    .filter(Boolean).join(', ') || 'None'
+
   function toggleAddon(id) {
     setSelectedAddons(prev =>
       prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
@@ -81,12 +86,6 @@ export default function QuotePage() {
     if (!selectedType) { setError('Please select a project type first.'); return }
     setSending(true)
     setError('')
-
-    const addonLabels = selectedAddons
-      .map(id => ADDONS.find(a => a.id === id)?.label)
-      .filter(Boolean).join(', ') || 'None'
-
-    const fp = (usd) => formatPrice(usd, currency, rates)
 
     try {
       await emailjs.send(
@@ -117,10 +116,33 @@ export default function QuotePage() {
     }
   }
 
-  const waText = selectedType
-    ? `Hi Erasmus, I'd like a quote for a ${selectedType.label}. My estimate is $${totalUsd}. Let's discuss!`
-    : "Hi Erasmus, I'd like to discuss a web project with you."
-  const waUrl = `https://wa.me/255753437557?text=${encodeURIComponent(waText)}`
+  const waLines = selectedType ? [
+    "Hi Erasmus! Here's my quote request:",
+    '',
+    '*PROJECT DETAILS*',
+    `Project: ${selectedType.label}`,
+    `Add-ons: ${addonLabels}`,
+    `Pages: ${pages}`,
+    `Timeline: ${urgent ? 'Urgent (rush delivery)' : 'Standard'}`,
+    '',
+    `*PRICE BREAKDOWN (${currency})*`,
+    `Subtotal: ${fp(subtotalUsd)}`,
+    ...(urgent ? [`Rush Surcharge (20%): ${fp(urgentSurchargeUsd)}`] : []),
+    `Total: ${fp(totalUsd)}`,
+    `Monthly Recurring: ${monthlyRecurringUsd > 0 ? `${fp(monthlyRecurringUsd)}/mo` : 'None'}`,
+    ...(form.name || form.email || form.phone || form.notes ? [
+      '',
+      '*MY DETAILS*',
+      ...(form.name  ? [`Name: ${form.name}`]   : []),
+      ...(form.email ? [`Email: ${form.email}`] : []),
+      ...(form.phone ? [`Phone: ${form.phone}`] : []),
+      ...(form.notes ? [`Notes: ${form.notes}`] : []),
+    ] : []),
+    '',
+    "Let's discuss!",
+  ] : ["Hi Erasmus, I'd like to discuss a web project with you."]
+
+  const waUrl = `https://wa.me/255753437557?text=${encodeURIComponent(waLines.join('\n'))}`
 
   return (
     <div className={styles.page}>
