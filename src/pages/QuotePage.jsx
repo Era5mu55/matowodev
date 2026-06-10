@@ -44,6 +44,10 @@ export default function QuotePage() {
   const addonsUsd = selectedAddons.reduce((sum, id) => {
     return sum + (ADDONS.find(a => a.id === id)?.baseUsd ?? 0)
   }, 0)
+  const monthlyRecurringUsd = selectedAddons.reduce((sum, id) => {
+    const a = ADDONS.find(x => x.id === id)
+    return a?.monthly ? sum + a.baseUsd : sum
+  }, 0)
   const extraPages = Math.max(0, pages - FREE_PAGES)
   const pagesUsd = extraPages * PER_EXTRA_PAGE_USD
   const subtotalUsd = baseUsd + addonsUsd + pagesUsd
@@ -70,23 +74,26 @@ export default function QuotePage() {
       .map(id => ADDONS.find(a => a.id === id)?.label)
       .filter(Boolean).join(', ') || 'None'
 
-    const totalLocal = rates ? formatPrice(totalUsd, currency, rates) : `$${totalUsd}`
+    const fp = (usd) => formatPrice(usd, currency, rates)
 
     try {
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
-          name:         form.name,
-          email:        form.email,
-          phone:        form.phone || 'Not provided',
-          project_type: selectedType.label,
-          addons:       addonLabels,
-          pages:        String(pages),
-          timeline:     urgent ? 'Urgent (rush delivery)' : 'Standard',
-          total_usd:    `$${totalUsd.toLocaleString()}`,
-          total_local:  `${totalLocal} (${currency})`,
-          message:      form.notes || 'No additional notes.',
+          name:              form.name,
+          email:             form.email,
+          phone:             form.phone || 'Not provided',
+          project_type:      selectedType.label,
+          addons:            addonLabels,
+          pages:             String(pages),
+          timeline:          urgent ? 'Urgent (rush delivery)' : 'Standard',
+          currency,
+          subtotal:          fp(subtotalUsd),
+          urgent_premium:    urgent ? fp(urgentSurchargeUsd) : 'N/A',
+          total:             fp(totalUsd),
+          monthly_recurring: monthlyRecurringUsd > 0 ? `${fp(monthlyRecurringUsd)}/mo` : 'None',
+          message:           form.notes || 'No additional notes.',
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
       )
