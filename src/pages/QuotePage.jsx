@@ -136,7 +136,9 @@ export default function QuotePage() {
                     onClick={() => setSelectedType(pt)}
                   >
                     <span className={styles.typeLabel}>{pt.label}</span>
-                    <span className={styles.typePrice}>from ${pt.baseUsd.toLocaleString()}</span>
+                    <span key={`${currency}-${pt.baseUsd}`} className={styles.typePrice}>
+                      from {formatPrice(pt.baseUsd, currency, rates)}
+                    </span>
                   </button>
                 ))}
               </div>
@@ -159,7 +161,9 @@ export default function QuotePage() {
                         onChange={() => toggleAddon(addon.id)}
                       />
                       <span className={styles.addonLabel}>{addon.label}</span>
-                      <span className={styles.addonPrice}>+${addon.baseUsd}{addon.monthly ? '/mo' : ''}</span>
+                      <span key={`${currency}-${addon.baseUsd}`} className={styles.addonPrice}>
+                        +{formatPrice(addon.baseUsd, currency, rates)}{addon.monthly ? '/mo' : ''}
+                      </span>
                     </label>
                   )
                 })}
@@ -170,7 +174,9 @@ export default function QuotePage() {
               <h2 className={styles.stepTitle}>
                 <span className={styles.stepNum}>3</span>
                 How many pages?
-                <span className={styles.stepNote}>{FREE_PAGES} included free, +${PER_EXTRA_PAGE_USD} per extra</span>
+                <span className={styles.stepNote}>
+                  {FREE_PAGES} included free, +{formatPrice(PER_EXTRA_PAGE_USD, currency, rates)} per extra
+                </span>
               </h2>
               <div className={styles.sliderRow}>
                 <input
@@ -186,7 +192,7 @@ export default function QuotePage() {
               </div>
               {extraPages > 0 && (
                 <p className={styles.sliderHint}>
-                  +{extraPages} extra page{extraPages !== 1 ? 's' : ''} = +${extraPages * PER_EXTRA_PAGE_USD}
+                  +{extraPages} extra page{extraPages !== 1 ? 's' : ''} = +{formatPrice(pagesUsd, currency, rates)}
                 </p>
               )}
             </section>
