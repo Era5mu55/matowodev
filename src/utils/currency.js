@@ -2,10 +2,27 @@ import { useState, useEffect } from 'react'
 
 const RATES_KEY = 'currency_rates'
 const PREF_KEY  = 'selected_currency'
+const TTL_MS    = 24 * 60 * 60 * 1000 // 24 hours
 
 const FALLBACK = { USD: 1, TZS: 2650, KES: 129, UGX: 3750 }
 
 export const CURRENCIES = ['USD', 'TZS', 'KES', 'UGX']
+
+function loadCached() {
+  try {
+    const raw = localStorage.getItem(RATES_KEY)
+    if (!raw) return null
+    const { rates, ts } = JSON.parse(raw)
+    if (Date.now() - ts > TTL_MS) return null // stale
+    return rates
+  } catch { return null }
+}
+
+function saveCache(rates) {
+  try {
+    localStorage.setItem(RATES_KEY, JSON.stringify({ rates, ts: Date.now() }))
+  } catch {}
+}
 
 export function formatPrice(baseUsd, currency, rates, monthly = false) {
   if (!rates) return '...'
@@ -22,18 +39,11 @@ export function formatPrice(baseUsd, currency, rates, monthly = false) {
 }
 
 export function useExchangeRates() {
-  const [rates, setRates] = useState(() => {
-    try {
-      const c = sessionStorage.getItem(RATES_KEY)
-      return c ? JSON.parse(c) : null
-    } catch { return null }
-  })
-  const [isLive, setIsLive] = useState(() => {
-    try { return !!sessionStorage.getItem(RATES_KEY) } catch { return false }
-  })
+  const [rates, setRates] = useState(() => loadCached())
+  const [isLive, setIsLive] = useState(() => !!loadCached())
 
   useEffect(() => {
-    try { if (sessionStorage.getItem(RATES_KEY)) return } catch {}
+    if (loadCached()) return // fresh cache exists, skip fetch
 
     const apiKey = import.meta.env.VITE_EXCHANGE_RATE_API_KEY
     fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/latest/USD`)
@@ -41,7 +51,7 @@ export function useExchangeRates() {
       .then(data => {
         const { TZS, KES, UGX } = data.conversion_rates
         const r = { USD: 1, TZS, KES, UGX }
-        try { sessionStorage.setItem(RATES_KEY, JSON.stringify(r)) } catch {}
+        saveCache(r)
         setRates(r)
         setIsLive(true)
       })
@@ -55,11 +65,11 @@ export function useExchangeRates() {
 
 export function useCurrencyPref() {
   const [currency, setCurrency] = useState(() => {
-    try { return sessionStorage.getItem(PREF_KEY) || 'USD' } catch { return 'USD' }
+    try { return localStorage.getItem(PREF_KEY) || 'USD' } catch { return 'USD' }
   })
 
   function select(c) {
-    try { sessionStorage.setItem(PREF_KEY, c) } catch {}
+    try { localStorage.setItem(PREF_KEY, c) } catch {}
     setCurrency(c)
   }
 
