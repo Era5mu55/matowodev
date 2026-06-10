@@ -35,10 +35,12 @@ export function useExchangeRates() {
   useEffect(() => {
     try { if (sessionStorage.getItem(RATES_KEY)) return } catch {}
 
-    fetch('https://api.frankfurter.app/latest?from=USD&to=TZS,KES,UGX')
+    const apiKey = import.meta.env.VITE_EXCHANGE_RATE_API_KEY
+    fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/latest/USD`)
       .then(r => r.json())
       .then(data => {
-        const r = { USD: 1, ...data.rates }
+        const { TZS, KES, UGX } = data.conversion_rates
+        const r = { USD: 1, TZS, KES, UGX }
         try { sessionStorage.setItem(RATES_KEY, JSON.stringify(r)) } catch {}
         setRates(r)
         setIsLive(true)
