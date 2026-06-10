@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { services } from '../data/services'
+import { useExchangeRates, useCurrencyPref, formatPrice } from '../utils/currency'
+import CurrencySwitcher from './CurrencySwitcher'
 import styles from '../styles/Services.module.css'
 
 const TIER_META = {
@@ -9,8 +11,9 @@ const TIER_META = {
   'Add-ons':    { color: 'var(--color-cta)',    label: 'Add-ons' },
 }
 
-function ServiceCard({ name, price, usd, desc, included, timeline, whatsapp_msg, isOpen, onToggle }) {
+function ServiceCard({ name, baseUsd, monthly, desc, included, timeline, whatsapp_msg, isOpen, onToggle, rates, currency }) {
   const waUrl = `https://wa.me/255753437557?text=${encodeURIComponent(whatsapp_msg)}`
+  const displayPrice = formatPrice(baseUsd, currency, rates, monthly ?? false)
 
   function handleGetQuote(e) {
     e.stopPropagation()
@@ -28,8 +31,9 @@ function ServiceCard({ name, price, usd, desc, included, timeline, whatsapp_msg,
       <div className={styles.itemTop}>
         <h3 className={styles.itemName}>{name}</h3>
         <div className={styles.pricing}>
-          <span className={styles.priceTsh}>{price}</span>
-          <span className={styles.priceUsd}>{usd}</span>
+          <span key={`${currency}-${baseUsd}`} className={styles.priceDisplay}>
+            {displayPrice}
+          </span>
         </div>
         <span className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ''}`} aria-hidden="true">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -65,11 +69,7 @@ function ServiceCard({ name, price, usd, desc, included, timeline, whatsapp_msg,
             </div>
 
             <div className={styles.cardActions} onClick={e => e.stopPropagation()}>
-              <a
-                href="#contact"
-                className={styles.btnQuote}
-                onClick={handleGetQuote}
-              >
+              <a href="#contact" className={styles.btnQuote} onClick={handleGetQuote}>
                 Get a Quote
               </a>
               <a
@@ -93,6 +93,8 @@ function ServiceCard({ name, price, usd, desc, included, timeline, whatsapp_msg,
 
 export default function Services() {
   const [openKey, setOpenKey] = useState(null)
+  const { rates, isLive } = useExchangeRates()
+  const [currency, setCurrency] = useCurrencyPref()
 
   function toggle(key) {
     setOpenKey(prev => prev === key ? null : key)
@@ -106,10 +108,12 @@ export default function Services() {
           <span className={styles.eyebrow}>Pricing</span>
           <h2 className={styles.heading}>Services &amp; Rates</h2>
           <p className={styles.sub}>
-            Transparent pricing in Tanzanian Shillings with USD equivalents.
+            Transparent pricing — switch between currencies below.
             All projects include a free consultation.
           </p>
         </header>
+
+        <CurrencySwitcher active={currency} onSelect={setCurrency} isLive={isLive} />
 
         <div className={styles.tiers}>
           {services.map(({ tier, items }) => {
@@ -129,6 +133,8 @@ export default function Services() {
                         {...item}
                         isOpen={openKey === key}
                         onToggle={() => toggle(key)}
+                        rates={rates}
+                        currency={currency}
                       />
                     )
                   })}
