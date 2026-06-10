@@ -23,7 +23,7 @@ export default function Navbar() {
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <nav className={styles.nav} aria-label="Main navigation">
         <a href="#" className={styles.logo} onClick={closeMenu}>
-          matowo<span className={styles.logoAccent}>.dev</span>
+          Matowo <span className={styles.logoAccent}>Dev</span>
         </a>
 
         <ul

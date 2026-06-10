@@ -59,7 +59,7 @@ export default function Footer() {
         <div className={styles.top}>
           <div className={styles.brand}>
             <a href="#" className={styles.logo}>
-              matowo<span className={styles.logoAccent}>.dev</span>
+              Matowo <span className={styles.logoAccent}>Dev</span>
             </a>
             <p className={styles.tagline}>
               I build Web Apps, Landing Pages, Business Sites &amp; Blog Platforms that grow businesses.
