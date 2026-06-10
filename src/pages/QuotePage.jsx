@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import emailjs from '@emailjs/browser'
 import { useExchangeRates, useCurrencyPref, formatPrice } from '../utils/currency'
@@ -34,6 +34,18 @@ export default function QuotePage() {
   const [urgent, setUrgent] = useState(false)
   const [currency, setCurrency] = useCurrencyPref()
   const { rates, isLive } = useExchangeRates()
+
+  useEffect(() => {
+    const prev = document.title
+    document.title = 'Get an Instant Quote | Erasmus Matowo — matowodev.com'
+    let meta = document.querySelector('meta[name="description"]')
+    const prevDesc = meta?.getAttribute('content') ?? ''
+    if (meta) meta.setAttribute('content', 'Get an instant price estimate for your website project. Web apps, business sites, landing pages and blogs — with live pricing in USD, TZS, KES and UGX.')
+    return () => {
+      document.title = prev
+      if (meta) meta.setAttribute('content', prevDesc)
+    }
+  }, [])
 
   const [form, setForm] = useState({ name: '', email: '', phone: '', notes: '' })
   const [sending, setSending] = useState(false)
