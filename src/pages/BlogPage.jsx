@@ -1,12 +1,51 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { posts } from '../data/blog'
 import styles from '../styles/BlogPage.module.css'
 
+const ALL = 'All'
+
+const allTags = [ALL, ...Array.from(
+  new Set(posts.flatMap(p => p.tags))
+).sort()]
+
+function BlogCard({ id, slug, title, excerpt, date, readTime, tags }) {
+  const formatted = new Date(date).toLocaleDateString('en-GB', {
+    day: 'numeric', month: 'short', year: 'numeric',
+  })
+  return (
+    <article className={styles.card}>
+      <div className={styles.meta}>
+        <span className={styles.tag}>{tags[0]}</span>
+        <span className={styles.dot} aria-hidden="true">·</span>
+        <time dateTime={date} className={styles.muted}>{formatted}</time>
+        <span className={styles.dot} aria-hidden="true">·</span>
+        <span className={styles.muted}>{readTime}</span>
+      </div>
+      <h2 className={styles.title}>
+        <Link to={`/blog/${slug}`} className={styles.titleLink}>{title}</Link>
+      </h2>
+      <p className={styles.excerpt}>{excerpt}</p>
+      <Link to={`/blog/${slug}`} className={styles.readLink}>
+        Read article
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </Link>
+    </article>
+  )
+}
+
 export default function BlogPage() {
+  const [activeTag, setActiveTag] = useState(ALL)
+
   useEffect(() => {
     document.title = 'Blog | Matowo Dev'
   }, [])
+
+  const filtered = activeTag === ALL
+    ? posts
+    : posts.filter(p => p.tags.includes(activeTag))
 
   return (
     <main className={styles.page}>
@@ -20,33 +59,28 @@ export default function BlogPage() {
           </p>
         </header>
 
-        <div className={styles.list}>
-          {posts.map(post => {
-            const formatted = new Date(post.date).toLocaleDateString('en-GB', {
-              day: 'numeric', month: 'long', year: 'numeric',
-            })
-            return (
-              <article key={post.id} className={styles.item}>
-                <div className={styles.meta}>
-                  {post.tags.map(t => (
-                    <span key={t} className={styles.tag}>{t}</span>
-                  ))}
-                  <span className={styles.muted}>{formatted}</span>
-                  <span className={styles.muted}>{post.readTime}</span>
-                </div>
-                <h2 className={styles.title}>
-                  <Link to={`/blog/${post.slug}`} className={styles.titleLink}>
-                    {post.title}
-                  </Link>
-                </h2>
-                <p className={styles.excerpt}>{post.excerpt}</p>
-                <Link to={`/blog/${post.slug}`} className={styles.readLink}>
-                  Read article →
-                </Link>
-              </article>
-            )
-          })}
+        <div className={styles.filters} role="group" aria-label="Filter by category">
+          {allTags.map(tag => (
+            <button
+              key={tag}
+              className={`${styles.filterBtn} ${activeTag === tag ? styles.filterActive : ''}`}
+              onClick={() => setActiveTag(tag)}
+              aria-pressed={activeTag === tag}
+            >
+              {tag}
+            </button>
+          ))}
         </div>
+
+        {filtered.length === 0 ? (
+          <p className={styles.empty}>No articles in this category yet.</p>
+        ) : (
+          <div className={styles.grid}>
+            {filtered.map(post => (
+              <BlogCard key={post.id} {...post} />
+            ))}
+          </div>
+        )}
       </div>
     </main>
   )
