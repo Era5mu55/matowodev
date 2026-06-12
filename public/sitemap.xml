@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://matowodev.com/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
-  <url><loc>https://matowodev.com/#work</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://matowodev.com/#services</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://matowodev.com/#contact</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
-  <url><loc>https://matowodev.com/quote</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://matowodev.com/</loc><lastmod>2025-06-12</lastmod><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://matowodev.com/#work</loc><lastmod>2025-06-12</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://matowodev.com/#services</loc><lastmod>2025-06-12</lastmod><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://matowodev.com/#contact</loc><lastmod>2025-06-12</lastmod><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://matowodev.com/quote</loc><lastmod>2025-06-12</lastmod><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://matowodev.com/blog</loc><lastmod>2025-06-12</lastmod><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://matowodev.com/blog/website-cost-tanzania</loc><lastmod>2025-06-12</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://matowodev.com/blog/arusha-business-website-2025</loc><lastmod>2025-06-12</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://matowodev.com/blog/wordpress-vs-custom-website</loc><lastmod>2025-06-12</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://matowodev.com/blog/get-more-customers-online-tanzania</loc><lastmod>2025-06-12</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://matowodev.com/blog/ecommerce-website-east-africa</loc><lastmod>2025-06-12</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://matowodev.com/blog/how-long-to-build-website</loc><lastmod>2025-06-12</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://matowodev.com/blog/website-redesign-signs</loc><lastmod>2025-06-12</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://matowodev.com/blog/mobile-first-east-africa</loc><lastmod>2025-06-12</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://matowodev.com/blog/choose-web-developer-tanzania</loc><lastmod>2025-06-12</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://matowodev.com/blog/mpesa-integration-website</loc><lastmod>2025-06-12</lastmod><priority>0.7</priority><changefreq>monthly</changefreq></url>
 </urlset>
