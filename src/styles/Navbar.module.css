@@ -239,6 +239,10 @@
     display: none;
   }
 
+  .mobileToggles {
+    display: none;
+  }
+
   .ctaGroup {
     display: flex;
   }
