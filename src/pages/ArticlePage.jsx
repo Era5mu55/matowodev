@@ -57,9 +57,64 @@ export default function ArticlePage() {
   const post = posts.find(p => p.slug === slug)
 
   useEffect(() => {
-    document.title = post
-      ? `${post.title} | Matowo Dev`
-      : 'Article not found | Matowo Dev'
+    const metaDesc = document.querySelector('meta[name="description"]')
+    const canonical = document.querySelector('link[rel="canonical"]')
+
+    if (!post) {
+      document.title = 'Article not found | Matowo Dev'
+      return
+    }
+
+    document.title = `${post.title} | Matowo Dev`
+    if (metaDesc) metaDesc.setAttribute('content', post.excerpt)
+    if (canonical) canonical.setAttribute('href', `https://matowodev.com/blog/${post.slug}`)
+
+    const breadcrumbScript = document.createElement('script')
+    breadcrumbScript.type = 'application/ld+json'
+    breadcrumbScript.id = 'ld-breadcrumb'
+    breadcrumbScript.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://matowodev.com' },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://matowodev.com/blog' },
+        { '@type': 'ListItem', position: 3, name: post.title, item: `https://matowodev.com/blog/${post.slug}` },
+      ],
+    })
+    document.head.appendChild(breadcrumbScript)
+
+    const articleScript = document.createElement('script')
+    articleScript.type = 'application/ld+json'
+    articleScript.id = 'ld-article'
+    articleScript.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: post.title,
+      description: post.excerpt,
+      author: {
+        '@type': 'Person',
+        name: 'Erasmus Matowo',
+        url: 'https://matowodev.com',
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'Matowo Dev',
+        url: 'https://matowodev.com',
+        logo: 'https://matowodev.com/images/logo.svg',
+      },
+      datePublished: post.date,
+      dateModified: post.date,
+      image: 'https://matowodev.com/og-image.jpg',
+      url: `https://matowodev.com/blog/${post.slug}`,
+    })
+    document.head.appendChild(articleScript)
+
+    return () => {
+      document.getElementById('ld-breadcrumb')?.remove()
+      document.getElementById('ld-article')?.remove()
+      if (metaDesc) metaDesc.setAttribute('content', 'Erasmus Matowo is a professional web developer based in Arusha, Tanzania. Specialising in web apps, business websites, e-commerce, landing pages and blogs for startups across Tanzania, Kenya, Uganda and East Africa. From TSH 400,000.')
+      if (canonical) canonical.setAttribute('href', 'https://matowodev.com/')
+    }
   }, [post])
 
   if (!post) {

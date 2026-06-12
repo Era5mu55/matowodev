@@ -7,6 +7,7 @@ const projects = [
       "Africa's #1 job platform connecting talent with employers across the continent. Features smart matching, employer dashboards, and mobile-optimised job alerts.",
     tags: ['React', 'Node.js', 'MongoDB'],
     image: '/images/careerlink.png',
+    imageAlt: 'CareerLink Africa — Job platform web app built by Matowo Dev',
     liveUrl: 'https://careerlinkafrica.com',
     repoUrl: null,
     caseStudy: {
@@ -32,6 +33,7 @@ const projects = [
       'Verified hiring platform for US small businesses — background checks, scheduling, and payroll in one place. Cuts time-to-hire by over 60%.',
     tags: ['React', 'Node.js', 'Stripe'],
     image: '/images/hireqo.png',
+    imageAlt: 'Hireqo — US hiring platform web app built by Matowo Dev',
     liveUrl: 'https://hireqo.com',
     repoUrl: null,
     caseStudy: {
@@ -57,6 +59,7 @@ const projects = [
       'Property rental platform across East Africa with M-Pesa and MTN MoMo payments. Landlords list, tenants pay and sign leases — all from their phone.',
     tags: ['React', 'Node.js', 'M-Pesa API'],
     image: '/images/nyumbabora.png',
+    imageAlt: 'NyumbaBora — Property rental platform East Africa built by Matowo Dev',
     liveUrl: 'https://nyumbabora.com',
     repoUrl: null,
     caseStudy: {

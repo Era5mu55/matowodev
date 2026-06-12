@@ -40,7 +40,15 @@ export default function BlogPage() {
   const [activeTag, setActiveTag] = useState(ALL)
 
   useEffect(() => {
-    document.title = 'Blog | Matowo Dev'
+    document.title = 'Web Development Blog | Matowo Dev — Tanzania'
+    const metaDesc = document.querySelector('meta[name="description"]')
+    const canonical = document.querySelector('link[rel="canonical"]')
+    if (metaDesc) metaDesc.setAttribute('content', 'Expert articles on web development, website costs, e-commerce and digital marketing for businesses in Tanzania, Kenya and Uganda.')
+    if (canonical) canonical.setAttribute('href', 'https://matowodev.com/blog')
+    return () => {
+      if (metaDesc) metaDesc.setAttribute('content', 'Erasmus Matowo is a professional web developer based in Arusha, Tanzania. Specialising in web apps, business websites, e-commerce, landing pages and blogs for startups across Tanzania, Kenya, Uganda and East Africa. From TSH 400,000.')
+      if (canonical) canonical.setAttribute('href', 'https://matowodev.com/')
+    }
   }, [])
 
   const filtered = activeTag === ALL

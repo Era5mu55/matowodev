@@ -4,13 +4,13 @@ import CaseStudyModal from './CaseStudyModal'
 import styles from '../styles/Projects.module.css'
 
 function ProjectCard({ project, onViewCaseStudy }) {
-  const { title, description, tags, image, liveUrl, repoUrl, caseStudy } = project
+  const { title, description, tags, image, imageAlt, liveUrl, repoUrl, caseStudy } = project
   return (
     <article className={styles.card}>
       <div className={styles.imageWrap}>
         <img
           src={image}
-          alt={`${title} screenshot`}
+          alt={imageAlt || `${title} — project built by Matowo Dev`}
           className={styles.image}
           loading="lazy"
         />

@@ -117,7 +117,7 @@ export default function Hero() {
         <div className={styles.imageCol}>
           <img
             src="/images/erasmus.png"
-            alt="Erasmus Matowo — Web Developer"
+            alt="Erasmus Matowo — Web Developer based in Arusha Tanzania"
             className={styles.photo}
             loading="eager"
           />
