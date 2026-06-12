@@ -1,11 +1,7 @@
+import { Link } from 'react-router-dom'
+import { useLang } from '../context/LanguageContext'
+import { t } from '../data/translations'
 import styles from '../styles/Footer.module.css'
-
-const NAV_LINKS = [
-  { label: 'Work',         href: '#work' },
-  { label: 'Services',     href: '#services' },
-  { label: 'Clients',      href: '#testimonials' },
-  { label: 'Contact',      href: '#contact' },
-]
 
 const SOCIAL_LINKS = [
   {
@@ -51,6 +47,14 @@ const SOCIAL_LINKS = [
 
 export default function Footer() {
   const year = new Date().getFullYear()
+  const { lang } = useLang()
+
+  const navLinks = [
+    { label: t.nav.work[lang],     href: '/#work' },
+    { label: t.nav.services[lang], href: '/#services' },
+    { label: t.nav.blog[lang],     href: '/blog', isRoute: true },
+    { label: t.nav.contact[lang],  href: '/#contact' },
+  ]
 
   return (
     <footer className={styles.footer}>
@@ -58,19 +62,20 @@ export default function Footer() {
 
         <div className={styles.top}>
           <div className={styles.brand}>
-            <a href="#" className={styles.logo}>
+            <a href="/" className={styles.logo}>
               Matowo <span className={styles.logoAccent}>Dev</span>
             </a>
-            <p className={styles.tagline}>
-              I build Web Apps, Landing Pages, Business Sites &amp; Blog Platforms that grow businesses.
-            </p>
+            <p className={styles.tagline}>{t.footer.tagline[lang]}</p>
           </div>
 
           <nav aria-label="Footer navigation" className={styles.nav}>
             <ul className={styles.navLinks}>
-              {NAV_LINKS.map(({ label, href }) => (
+              {navLinks.map(({ label, href, isRoute }) => (
                 <li key={href}>
-                  <a href={href} className={styles.navLink}>{label}</a>
+                  {isRoute
+                    ? <Link to={href} className={styles.navLink}>{label}</Link>
+                    : <a href={href} className={styles.navLink}>{label}</a>
+                  }
                 </li>
               ))}
             </ul>

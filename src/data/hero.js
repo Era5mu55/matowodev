@@ -17,9 +17,9 @@ const heroData = {
   },
   available: true,
   stats: [
-    { value: '12+', label: 'Projects delivered' },
-    { value: '2',   label: 'Active clients' },
-    { value: '5+',  label: 'Years experience' },
+    { target: 12, suffix: '+', label: 'Projects delivered' },
+    { target: 2,  suffix: '',  label: 'Active clients' },
+    { target: 5,  suffix: '+', label: 'Years experience' },
   ],
 }
 

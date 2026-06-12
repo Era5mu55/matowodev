@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import heroData from '../data/hero'
+import { useLang } from '../context/LanguageContext'
+import { t } from '../data/translations'
+import useCountUp from '../utils/useCountUp'
 import styles from '../styles/Hero.module.css'
 
 const ROLES = heroData.roles
@@ -42,10 +45,20 @@ function useTypewriter() {
   return text
 }
 
+function AnimatedStat({ target, suffix, label }) {
+  const [display, ref] = useCountUp(target, suffix)
+  return (
+    <div ref={ref} className={styles.stat}>
+      <span className={styles.statValue}>{display}</span>
+      <span className={styles.statLabel}>{label}</span>
+    </div>
+  )
+}
+
 export default function Hero() {
   const typedText = useTypewriter()
-  const { bio, seoText, cta, available, stats, identity, subtitle } = heroData
-
+  const { bio, seoText, cta, available, stats, identity } = heroData
+  const { lang } = useLang()
 
   return (
     <section className={styles.hero} id="home" aria-label="Introduction">
@@ -58,7 +71,7 @@ export default function Hero() {
           {available && (
             <span className={styles.badge}>
               <span className={styles.dot} aria-hidden="true" />
-              Available for work
+              {t.hero.badge[lang]}
             </span>
           )}
 
@@ -70,33 +83,30 @@ export default function Hero() {
           </p>
 
           <h1 className={styles.headline} aria-live="polite" aria-atomic="true">
-            I build{' '}
+            {t.hero.headline[lang]}{' '}
             <span className={styles.typed}>{typedText}</span>
             <span className={styles.cursor} aria-hidden="true">|</span>
           </h1>
 
-          <p className={styles.subtitle}>{subtitle}</p>
+          <p className={styles.subtitle}>{t.hero.subtitle[lang]}</p>
 
-          <p className={styles.bio}>{bio}</p>
+          <p className={styles.bio}>{t.hero.bio[lang]}</p>
 
           <div className={styles.actions}>
             <a href={cta.primary.href} className={styles.btnPrimary}>
-              {cta.primary.label}
+              {t.hero.viewWork[lang]}
             </a>
             <a href={cta.secondary.href} className={styles.btnCta}>
-              {cta.secondary.label}
+              {t.hero.getQuote[lang]}
             </a>
             <a href={cta.tertiary.href} className={styles.btnOutline}>
-              {cta.tertiary.label}
+              {t.hero.letsTalk[lang]}
             </a>
           </div>
 
           <div className={styles.stats} aria-label="Quick stats">
-            {stats.map(({ value, label }) => (
-              <div key={label} className={styles.stat}>
-                <span className={styles.statValue}>{value}</span>
-                <span className={styles.statLabel}>{label}</span>
-              </div>
+            {stats.map(({ target, suffix, label }) => (
+              <AnimatedStat key={label} target={target} suffix={suffix} label={label} />
             ))}
           </div>
 

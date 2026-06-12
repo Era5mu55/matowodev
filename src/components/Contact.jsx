@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import emailjs from '@emailjs/browser'
 import { services } from '../data/services'
+import { useLang } from '../context/LanguageContext'
+import { t } from '../data/translations'
 import styles from '../styles/Contact.module.css'
 
 const INITIAL_FORM = { name: '', email: '', projectType: '', message: '' }
@@ -52,18 +54,16 @@ export default function Contact() {
   }
 
   const isSending = status === 'sending'
+  const { lang } = useLang()
 
   return (
     <section id="contact" className={styles.section}>
       <div className={`container ${styles.inner}`}>
 
         <div className={styles.info}>
-          <span className={styles.eyebrow}>Get in touch</span>
-          <h2 className={styles.heading}>Let&apos;s Work Together</h2>
-          <p className={styles.sub}>
-            Have a project in mind? Fill in the form and I&apos;ll get back to you
-            within one business day.
-          </p>
+          <span className={styles.eyebrow}>{t.sections.contactEyebrow[lang]}</span>
+          <h2 className={styles.heading}>{t.sections.contactHeading[lang]}</h2>
+          <p className={styles.sub}>{t.sections.contactSub[lang]}</p>
 
           <ul className={styles.details}>
             <li className={styles.detail}>
@@ -183,10 +183,10 @@ export default function Contact() {
                 {isSending ? (
                   <>
                     <span className={styles.spinner} aria-hidden="true" />
-                    Sending…
+                    {t.sections.contactSending[lang]}
                   </>
                 ) : (
-                  'Send Message'
+                  t.sections.contactSubmit[lang]
                 )}
               </button>
             </form>

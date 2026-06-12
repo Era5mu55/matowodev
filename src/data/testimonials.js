@@ -2,27 +2,27 @@ const testimonials = [
   {
     id: 1,
     quote:
-      'Derick delivered our e-commerce dashboard ahead of schedule. The attention to detail was outstanding — sales are up 30% since launch.',
-    name: 'Sarah Mitchell',
-    role: 'CEO, StyleHaven',
+      'Erasmus built the CareerLink Africa platform from the ground up in under 8 weeks. The codebase is clean, performance is excellent, and he stayed communicative throughout. CareerLink wouldn\'t exist without him.',
+    name: 'Dorothy Osima',
+    role: 'Co-Founder, CareerLink Africa',
     avatar: '/images/avatar-1.jpg',
     rating: 5,
   },
   {
     id: 2,
     quote:
-      'Seamless from brief to handoff. Our landing page conversion rate doubled within two months of going live.',
-    name: 'James Okonkwo',
-    role: 'Founder, LaunchFast',
+      'We needed a hiring platform that could handle background checks, interview scheduling, and payroll — all in one. Erasmus understood the brief immediately and cut our time-to-hire by 60%.',
+    name: 'Gibson Kimata',
+    role: 'Founder, Hireqo',
     avatar: '/images/avatar-2.jpg',
     rating: 5,
   },
   {
     id: 3,
     quote:
-      'Responsive, professional, and technically excellent. The booking system handles hundreds of daily reservations without a single issue.',
-    name: 'Priya Sharma',
-    role: 'Operations Manager, TableTop',
+      'NyumbaBora needed M-Pesa integration, a landlord dashboard, and a tenant portal — all mobile-first. Erasmus delivered every feature on time and the app handles real-money transactions daily without a hitch.',
+    name: 'Dominic Makuu',
+    role: 'Founder, NyumbaBora',
     avatar: '/images/avatar-3.jpg',
     rating: 5,
   },

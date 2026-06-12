@@ -17,6 +17,18 @@
   --radius-lg: 14px;
 
   --nav-height: 68px;
+  --color-nav-scrolled: rgba(10, 15, 30, 0.92);
+}
+
+/* ── Light theme overrides ── */
+[data-theme="light"] {
+  --color-bg:          #F8F7F3;
+  --color-surface:     #FFFFFF;
+  --color-surface-2:   #F1F5F9;
+  --color-text:        #0A0F1E;
+  --color-muted:       #475569;
+  --color-border:      rgba(0, 0, 0, 0.08);
+  --color-nav-scrolled: rgba(248, 247, 243, 0.92);
 }
 
 /* ── Reset ── */

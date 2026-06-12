@@ -1,0 +1,136 @@
+.page {
+  background-color: var(--color-bg);
+  min-height: calc(100vh - var(--nav-height));
+  padding: 5rem 0;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.back {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.back:hover {
+  color: var(--color-text);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-width: 640px;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 5vw, 2.75rem);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.sub {
+  font-size: 1rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+/* Post list */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.item {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: border-color 0.25s ease;
+}
+
+.item:hover {
+  border-color: rgba(79, 70, 229, 0.35);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.6rem;
+  background-color: rgba(79, 70, 229, 0.12);
+  color: var(--color-accent);
+  border: 1px solid rgba(79, 70, 229, 0.2);
+  border-radius: 999px;
+}
+
+.muted {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.titleLink {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.titleLink:hover {
+  color: var(--color-accent);
+}
+
+.excerpt {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  line-height: 1.65;
+}
+
+.readLink {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-cta);
+  text-decoration: none;
+  transition: opacity 0.2s;
+  align-self: flex-start;
+}
+
+.readLink:hover {
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  .list {
+    gap: 1.5rem;
+  }
+}

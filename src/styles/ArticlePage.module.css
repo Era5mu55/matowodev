@@ -1,0 +1,139 @@
+.page {
+  background-color: var(--color-bg);
+  min-height: calc(100vh - var(--nav-height));
+  padding: 5rem 0;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.back {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  align-self: flex-start;
+}
+
+.back:hover {
+  color: var(--color-text);
+}
+
+.notFound {
+  color: var(--color-muted);
+  font-size: 1rem;
+}
+
+/* Article */
+.article {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.6rem;
+  background-color: rgba(79, 70, 229, 0.12);
+  color: var(--color-accent);
+  border: 1px solid rgba(79, 70, 229, 0.2);
+  border-radius: 999px;
+}
+
+.muted {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.excerpt {
+  font-size: 1.05rem;
+  color: var(--color-muted);
+  line-height: 1.65;
+}
+
+/* Body content */
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.h2 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-top: 0.75rem;
+}
+
+.p {
+  font-size: 1rem;
+  color: var(--color-muted);
+  line-height: 1.8;
+}
+
+/* CTA block */
+.cta {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.cta p {
+  font-size: 1rem;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+.ctaBtn {
+  display: inline-block;
+  background-color: var(--color-cta);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.ctaBtn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}

@@ -1,7 +1,10 @@
+import { useState } from 'react'
 import projects from '../data/projects'
+import CaseStudyModal from './CaseStudyModal'
 import styles from '../styles/Projects.module.css'
 
-function ProjectCard({ title, description, tags, image, liveUrl, repoUrl }) {
+function ProjectCard({ project, onViewCaseStudy }) {
+  const { title, description, tags, image, liveUrl, repoUrl, caseStudy } = project
   return (
     <article className={styles.card}>
       <div className={styles.imageWrap}>
@@ -47,6 +50,11 @@ function ProjectCard({ title, description, tags, image, liveUrl, repoUrl }) {
               View code
             </a>
           )}
+          {caseStudy && (
+            <button onClick={onViewCaseStudy} className={styles.linkGhost}>
+              Case Study →
+            </button>
+          )}
         </div>
       </div>
     </article>
@@ -54,6 +62,8 @@ function ProjectCard({ title, description, tags, image, liveUrl, repoUrl }) {
 }
 
 export default function Projects() {
+  const [activeStudy, setActiveStudy] = useState(null)
+
   return (
     <section id="work" className={styles.section}>
       <div className={`container ${styles.inner}`}>
@@ -68,11 +78,22 @@ export default function Projects() {
 
         <div className={styles.grid}>
           {projects.map(project => (
-            <ProjectCard key={project.id} {...project} />
+            <ProjectCard
+              key={project.id}
+              project={project}
+              onViewCaseStudy={() => setActiveStudy(project)}
+            />
           ))}
         </div>
 
       </div>
+
+      {activeStudy && (
+        <CaseStudyModal
+          project={activeStudy}
+          onClose={() => setActiveStudy(null)}
+        />
+      )}
     </section>
   )
 }

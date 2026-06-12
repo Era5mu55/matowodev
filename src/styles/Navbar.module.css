@@ -9,7 +9,7 @@
 }
 
 .scrolled {
-  background-color: rgba(10, 15, 30, 0.92);
+  background-color: var(--color-nav-scrolled);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 1px 0 var(--color-border);
@@ -172,6 +172,40 @@
 
 .hamburgerOpen span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Icon toggle buttons (theme / language) ── */
+.iconToggle {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-muted);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--font-display);
+  letter-spacing: 0.03em;
+}
+
+.iconToggle:hover {
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border-color: rgba(79, 70, 229, 0.3);
+}
+
+/* Mobile: show toggles in the drawer above CTA items */
+.mobileToggles {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem 0;
+  border-block-end: 1px solid var(--color-border);
 }
 
 /* ── Click-outside overlay ── */
