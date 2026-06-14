@@ -23,7 +23,7 @@ const TIER_META = {
 }
 
 function ServiceCard({ name, baseUsd, monthly, desc, included, timeline, whatsapp_msg, isOpen, onToggle, rates, currency }) {
-  const waUrl = `https://wa.me/255753437557?text=${encodeURIComponent(whatsapp_msg)}`
+  const waUrl = `https://wa.me/255786000551?text=${encodeURIComponent(whatsapp_msg)}`
   const displayPrice = formatPrice(baseUsd, currency, rates, monthly ?? false)
   const quoteHref = QUOTE_IDS[name] ? `/quote?service=${QUOTE_IDS[name]}` : '/quote'
 

@@ -1,6 +1,6 @@
 import styles from '../styles/WhatsAppFAB.module.css'
 
-const WA_URL = `https://wa.me/255753437557?text=${encodeURIComponent(
+const WA_URL = `https://wa.me/255786000551?text=${encodeURIComponent(
   "Hi Erasmus, I found your portfolio and I'd like to discuss a project."
 )}`
 

@@ -142,7 +142,7 @@ export default function QuotePage() {
     "Let's discuss!",
   ] : ["Hi Erasmus, I'd like to discuss a web project with you."]
 
-  const waUrl = `https://wa.me/255753437557?text=${encodeURIComponent(waLines.join('\n'))}`
+  const waUrl = `https://wa.me/255786000551?text=${encodeURIComponent(waLines.join('\n'))}`
 
   return (
     <div className={styles.page}>
