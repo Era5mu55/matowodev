@@ -77,6 +77,58 @@ const projects = [
       duration: '12 weeks',
     },
   },
+  {
+    id: 4,
+    title: 'Want2Convert',
+    category: 'Web App',
+    description:
+      'Free browser-based file conversion platform with 50+ tools — PDF, image, and developer utilities. Files never leave your browser thanks to WebAssembly-powered local processing.',
+    tags: ['Next.js', 'WebAssembly', 'JavaScript'],
+    image: '/images/want2convert.png',
+    imageAlt: 'Want2Convert — Browser-based file conversion platform built by Matowo Dev',
+    liveUrl: 'https://want2convert.com',
+    repoUrl: null,
+    caseStudy: {
+      problem:
+        'Users needed a fast, privacy-first tool for everyday file conversions — PDFs, images, and developer utilities — without uploading sensitive files to a third-party server or creating an account.',
+      solution:
+        'Built a Next.js web app with 50+ tools powered by WebAssembly, keeping all processing entirely in the browser. Covers PDF merging, splitting, compression, format conversions (PDF ↔ Word/Excel/JPG/PNG), image resizing, OCR, and developer tools like JSON formatter, Base64 encoder, and QR code generator.',
+      results: [
+        '50+ tools shipped across PDF, image, and developer categories',
+        'Zero file uploads — 100% client-side processing via WebAssembly',
+        'No account required — zero friction for new users',
+        'Covers US and international users with no data privacy concerns',
+      ],
+      tech: ['Next.js', 'WebAssembly', 'JavaScript', 'CSS'],
+      duration: '6 weeks',
+    },
+  },
+  {
+    id: 5,
+    title: 'TaxAndLoans',
+    category: 'Web App',
+    description:
+      'Free financial calculator platform for US & Canadian users — mortgage, income tax, and auto loan estimates. All calculations run in the browser with no data sent to any server.',
+    tags: ['Next.js', 'JavaScript', 'CSS'],
+    image: '/images/taxandloans.png',
+    imageAlt: 'TaxAndLoans — Financial calculator platform built by Matowo Dev',
+    liveUrl: 'https://taxandloans.com',
+    repoUrl: null,
+    caseStudy: {
+      problem:
+        'Homebuyers, employees, and loan applicants needed accurate, no-signup financial calculators that use real IRS and CRA formulas — without trusting a third-party server with sensitive financial data.',
+      solution:
+        'Built a Next.js calculator platform covering mortgage payments (PITI breakdown), federal/state income tax and FICA withholding, and auto loan estimates with sales tax. All math runs client-side using the same formulas lenders and tax agencies use, with full workings shown to the user.',
+      results: [
+        'Covers both US and Canadian tax and loan scenarios',
+        'Zero server-side data transmission — full privacy by design',
+        'Formulas sourced from IRS and CRA official publications',
+        'No account required — instant results for any user',
+      ],
+      tech: ['Next.js', 'JavaScript', 'CSS'],
+      duration: '4 weeks',
+    },
+  },
 ]
 
 export default projects

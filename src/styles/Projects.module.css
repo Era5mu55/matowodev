@@ -181,3 +181,10 @@
     gap: 2rem;
   }
 }
+
+/* ── Wide desktop: 4-column grid ── */
+@media (min-width: 1400px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
