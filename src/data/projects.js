@@ -129,6 +129,32 @@ const projects = [
       duration: '4 weeks',
     },
   },
+  {
+    id: 6,
+    title: 'Event Planners Tanzania',
+    category: 'Website',
+    description:
+      'Corporate website for a Dar es Salaam event production company serving banks, embassies, and telecoms across East Africa — showcasing 13 services from stage design to multilingual interpretation.',
+    tags: ['Next.js', 'Tailwind CSS', 'JavaScript'],
+    image: '/images/eventplannerstanzania.png',
+    imageAlt: 'Event Planners Tanzania — Corporate event production website built by Matowo Dev',
+    liveUrl: 'https://www.eventplannerstanzania.co.tz',
+    repoUrl: null,
+    caseStudy: {
+      problem:
+        'Event Planners Tanzania needed a polished web presence that could win trust with corporate clients like banks, embassies, and telecoms — communicating the full breadth of their services and past client roster in a way that matched the scale of the events they produce.',
+      solution:
+        'Built a fast, content-rich Next.js site styled with Tailwind CSS, covering all 13 service lines, a client showcase, and a clear quotation contact flow. Deployed on Vercel for fast global delivery across East Africa and abroad.',
+      results: [
+        '13 service categories presented with dedicated detail',
+        'Trusted client roster (Azania Bank, NMB, CRDB, US Embassy, UNDP, Vodacom) showcased',
+        'Fast, server-rendered pages via Next.js on Vercel',
+        'Mobile-friendly for clients researching on the go',
+      ],
+      tech: ['Next.js', 'Tailwind CSS', 'JavaScript'],
+      duration: '3 weeks',
+    },
+  },
 ]
 
 export default projects
