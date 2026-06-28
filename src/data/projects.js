@@ -6,7 +6,7 @@ const projects = [
     description:
       "Africa's #1 job platform connecting talent with employers across the continent. Features smart matching, employer dashboards, and mobile-optimised job alerts.",
     tags: ['React', 'Node.js', 'MongoDB'],
-    image: '/images/careerlink.png',
+    image: '/images/CareerlinkNew.png',
     imageAlt: 'CareerLink Africa — Job platform web app built by Matowo Dev',
     liveUrl: 'https://careerlinkafrica.com',
     repoUrl: null,
@@ -32,7 +32,7 @@ const projects = [
     description:
       'Verified hiring platform for US small businesses — background checks, scheduling, and payroll in one place. Cuts time-to-hire by over 60%.',
     tags: ['React', 'Node.js', 'Stripe'],
-    image: '/images/hireqo.png',
+    image: '/images/HireqoNew.png',
     imageAlt: 'Hireqo — US hiring platform web app built by Matowo Dev',
     liveUrl: 'https://hireqo.com',
     repoUrl: null,
@@ -84,7 +84,7 @@ const projects = [
     description:
       'Free browser-based file conversion platform with 50+ tools — PDF, image, and developer utilities. Files never leave your browser thanks to WebAssembly-powered local processing.',
     tags: ['Next.js', 'WebAssembly', 'JavaScript'],
-    image: '/images/want2convert.png',
+    image: '/images/want2convertNew.png',
     imageAlt: 'Want2Convert — Browser-based file conversion platform built by Matowo Dev',
     liveUrl: 'https://want2convert.com',
     repoUrl: null,
@@ -110,7 +110,7 @@ const projects = [
     description:
       'Free financial calculator platform for US & Canadian users — mortgage, income tax, and auto loan estimates. All calculations run in the browser with no data sent to any server.',
     tags: ['Next.js', 'JavaScript', 'CSS'],
-    image: '/images/taxandloans.png',
+    image: '/images/TaxAndLoansNew.png',
     imageAlt: 'TaxAndLoans — Financial calculator platform built by Matowo Dev',
     liveUrl: 'https://taxandloans.com',
     repoUrl: null,
@@ -136,7 +136,7 @@ const projects = [
     description:
       'Corporate website for a Dar es Salaam event production company serving banks, embassies, and telecoms across East Africa — showcasing 13 services from stage design to multilingual interpretation.',
     tags: ['Next.js', 'Tailwind CSS', 'JavaScript'],
-    image: '/images/eventplannerstanzania.png',
+    image: '/images/EventPlannersTanzaniaNew.png',
     imageAlt: 'Event Planners Tanzania — Corporate event production website built by Matowo Dev',
     liveUrl: 'https://www.eventplannerstanzania.co.tz',
     repoUrl: null,
@@ -153,6 +153,32 @@ const projects = [
       ],
       tech: ['Next.js', 'Tailwind CSS', 'JavaScript'],
       duration: '3 weeks',
+    },
+  },
+  {
+    id: 7,
+    title: 'Zeember',
+    category: 'Web App',
+    description:
+      'Privacy-first insurance estimation platform with 50+ calculators across auto, life, home, renters, and health — all data sourced from the NAIC, all calculations run locally in the browser.',
+    tags: ['Next.js', 'JavaScript', 'CSS'],
+    image: '/images/ZeemberNew.png',
+    imageAlt: 'Zeember — Insurance estimation platform built by Matowo Dev',
+    liveUrl: 'https://zeember.com',
+    repoUrl: null,
+    caseStudy: {
+      problem:
+        'Consumers wanting to understand insurance costs faced a frustrating choice: share personal data with lead-gen aggregators or get nothing useful at all. There was no transparent, privacy-first tool that gave real cost breakdowns without demanding a phone number or email.',
+      solution:
+        'Built a Next.js platform with 50+ insurance calculators covering auto, life, home, renters, and health policies. All estimates run client-side using formulas derived from NAIC data. Added insurance guides and life-event-triggered recommendations so users can educate themselves alongside the numbers.',
+      results: [
+        '50+ calculators across 5 insurance categories shipped at launch',
+        'Zero personal data collected — all processing stays in the browser',
+        'NAIC-sourced formulas give estimates consumers can trust',
+        'No account required — instant results for any visitor',
+      ],
+      tech: ['Next.js', 'JavaScript', 'CSS'],
+      duration: '5 weeks',
     },
   },
 ]

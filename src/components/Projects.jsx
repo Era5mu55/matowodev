@@ -1,9 +1,12 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import projects from '../data/projects'
 import CaseStudyModal from './CaseStudyModal'
 import styles from '../styles/Projects.module.css'
 
-function ProjectCard({ project, onViewCaseStudy }) {
+const HOME_LIMIT = 6
+
+export function ProjectCard({ project, onViewCaseStudy }) {
   const { title, description, tags, image, imageAlt, liveUrl, repoUrl, caseStudy } = project
   return (
     <article className={styles.card}>
@@ -63,6 +66,7 @@ function ProjectCard({ project, onViewCaseStudy }) {
 
 export default function Projects() {
   const [activeStudy, setActiveStudy] = useState(null)
+  const visibleProjects = projects.slice(0, HOME_LIMIT)
 
   return (
     <section id="work" className={styles.section}>
@@ -77,7 +81,7 @@ export default function Projects() {
         </header>
 
         <div className={styles.grid}>
-          {projects.map(project => (
+          {visibleProjects.map(project => (
             <ProjectCard
               key={project.id}
               project={project}
@@ -85,6 +89,17 @@ export default function Projects() {
             />
           ))}
         </div>
+
+        {projects.length > HOME_LIMIT && (
+          <div className={styles.cta}>
+            <Link to="/projects" className={styles.ctaBtn}>
+              See all {projects.length} projects
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </Link>
+          </div>
+        )}
 
       </div>
 

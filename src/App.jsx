@@ -14,6 +14,7 @@ import WhatsAppFAB from './components/WhatsAppFAB'
 import QuotePage from './pages/QuotePage'
 import BlogPage from './pages/BlogPage'
 import ArticlePage from './pages/ArticlePage'
+import AllProjectsPage from './pages/AllProjectsPage'
 
 function HomePage() {
   return (
@@ -37,6 +38,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/projects" element={<AllProjectsPage />} />
         <Route path="/quote" element={<QuotePage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<ArticlePage />} />
