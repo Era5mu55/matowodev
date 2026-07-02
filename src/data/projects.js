@@ -1,6 +1,32 @@
 const projects = [
   {
     id: 1,
+    title: 'The Extreme Wilderness',
+    category: 'Website',
+    description:
+      'Safari tour operator website for a locally-owned Arusha outfitter — showcasing Tanzania, Kenya, and Rwanda safaris, Kilimanjaro treks, and Zanzibar beach combos with a 4.9 TripAdvisor rating.',
+    tags: ['Next.js', 'JavaScript', 'CSS'],
+    image: '/images/theextremewilderness.png',
+    imageAlt: 'The Extreme Wilderness — Safari tour operator website built by Matowo Dev',
+    liveUrl: 'https://www.theextremewilderness.com/en',
+    repoUrl: null,
+    caseStudy: {
+      problem:
+        'The Extreme Wilderness, a locally-owned Arusha safari outfitter, needed a website that could win trust with international travelers over larger foreign agencies — communicating tailor-made safari, Kilimanjaro trekking, and Zanzibar packages while proving local expertise and credibility.',
+      solution:
+        'Built a fast, multi-language Next.js site covering safari packages across Tanzania, Kenya, and Rwanda, Kilimanjaro summit expeditions, and Zanzibar beach combinations. Integrated TripAdvisor reviews, a blog with destination guides, monthly migration and Kilimanjaro condition trackers, and WhatsApp-based direct contact for fast inquiry response.',
+      results: [
+        '4.9 TripAdvisor rating with 200+ verified guest reviews showcased',
+        'Coverage across 40+ countries of served travelers',
+        'Under 2-hour average inquiry response time supported via WhatsApp integration',
+        'Multi-language site built for an international travel audience',
+      ],
+      tech: ['Next.js', 'JavaScript', 'CSS'],
+      duration: '4 weeks',
+    },
+  },
+  {
+    id: 2,
     title: 'CareerLink Africa',
     category: 'Web App',
     description:
@@ -26,7 +52,7 @@ const projects = [
     },
   },
   {
-    id: 2,
+    id: 3,
     title: 'Hireqo',
     category: 'Web App',
     description:
@@ -52,7 +78,7 @@ const projects = [
     },
   },
   {
-    id: 3,
+    id: 4,
     title: 'NyumbaBora',
     category: 'Web App',
     description:
@@ -78,7 +104,7 @@ const projects = [
     },
   },
   {
-    id: 4,
+    id: 5,
     title: 'Want2Convert',
     category: 'Web App',
     description:
@@ -104,7 +130,7 @@ const projects = [
     },
   },
   {
-    id: 5,
+    id: 6,
     title: 'TaxAndLoans',
     category: 'Web App',
     description:
@@ -130,7 +156,7 @@ const projects = [
     },
   },
   {
-    id: 6,
+    id: 7,
     title: 'Event Planners Tanzania',
     category: 'Website',
     description:
@@ -156,7 +182,7 @@ const projects = [
     },
   },
   {
-    id: 7,
+    id: 8,
     title: 'Zeember',
     category: 'Web App',
     description:
