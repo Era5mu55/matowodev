@@ -4,7 +4,7 @@ import Hero from './components/Hero'
 import Projects from './components/Projects'
 import Services from './components/Services'
 import Process from './components/Process'
-import Clients from './components/Clients'
+import Consultation from './components/Consultation'
 import Testimonials from './components/Testimonials'
 import Blog from './components/Blog'
 import FAQ from './components/FAQ'
@@ -23,7 +23,7 @@ function HomePage() {
       <Projects />
       <Services />
       <Process />
-      <Clients />
+      <Consultation />
       <Testimonials />
       <Blog />
       <FAQ />

@@ -1,6 +1,58 @@
 const projects = [
   {
     id: 1,
+    title: 'Tulia Safaris',
+    category: 'Website',
+    description:
+      'Boutique safari brand website pairing Tanzania game drives with Zanzibar beach escapes — immersive full-screen storytelling built to convert high-end travelers.',
+    tags: ['JavaScript', 'CSS'],
+    image: '/images/TuliaSafaris.png',
+    imageAlt: 'Tulia Safaris — Boutique safari website built by Matowo Dev',
+    liveUrl: 'https://tuliasafaris.com/',
+    repoUrl: null,
+    caseStudy: {
+      problem:
+        'Tulia Safaris needed a premium web presence that could compete with established international safari brands — one that communicated a boutique, tailor-made experience rather than a generic tour listing site.',
+      solution:
+        'Built an immersive, full-screen storytelling site with cinematic imagery, a slideshow-driven hero, and clear paths into safari packages, destinations, and Zanzibar beach add-ons, backed by a fast direct-contact flow for crafting a custom safari.',
+      results: [
+        'Cinematic full-screen design built to convert high-end travelers',
+        'Clear cross-sell path from safari to Zanzibar beach combos',
+        'Fast, direct enquiry flow via WhatsApp and contact forms',
+        'Mobile-friendly for travelers researching on the go',
+      ],
+      tech: ['JavaScript', 'CSS'],
+      duration: '3 weeks',
+    },
+  },
+  {
+    id: 2,
+    title: 'Olsero Expedition',
+    category: 'Website',
+    description:
+      'Arusha-based safari and trekking operator site, established 2013, showcasing Serengeti and Ngorongoro safaris, Kilimanjaro treks, and a live trip-planning search widget.',
+    tags: ['JavaScript', 'CSS'],
+    image: '/images/OlseroExpedition.png',
+    imageAlt: 'Olsero Expedition — Safari and trekking operator website built by Matowo Dev',
+    liveUrl: 'https://www.olseroexpedition.co.tz/',
+    repoUrl: null,
+    caseStudy: {
+      problem:
+        'Olsero Expedition, a local Arusha safari and trekking outfitter, needed a site that proved over a decade of on-the-ground expertise while making it easy for travelers to plan a trip by destination, length, and budget.',
+      solution:
+        'Built a content-rich site covering safari and trekking packages, destinations, and accommodations, anchored by a hero trip-planner widget for destination, trip length, travelers, and budget, plus direct WhatsApp and contact CTAs.',
+      results: [
+        'Interactive trip-planner widget surfaced directly in the hero section',
+        'Full coverage of safari, trekking, destination, and accommodation offerings',
+        'Direct WhatsApp contact integrated for fast inquiry response',
+        'Mobile-friendly design for on-the-go trip research',
+      ],
+      tech: ['JavaScript', 'CSS'],
+      duration: '3 weeks',
+    },
+  },
+  {
+    id: 3,
     title: 'The Extreme Wilderness',
     category: 'Website',
     description:
@@ -26,7 +78,7 @@ const projects = [
     },
   },
   {
-    id: 2,
+    id: 4,
     title: 'CareerLink Africa',
     category: 'Web App',
     description:
@@ -52,7 +104,7 @@ const projects = [
     },
   },
   {
-    id: 3,
+    id: 5,
     title: 'Hireqo',
     category: 'Web App',
     description:
@@ -78,7 +130,7 @@ const projects = [
     },
   },
   {
-    id: 4,
+    id: 6,
     title: 'NyumbaBora',
     category: 'Web App',
     description:
@@ -104,7 +156,7 @@ const projects = [
     },
   },
   {
-    id: 5,
+    id: 7,
     title: 'Want2Convert',
     category: 'Web App',
     description:
@@ -130,7 +182,7 @@ const projects = [
     },
   },
   {
-    id: 6,
+    id: 8,
     title: 'TaxAndLoans',
     category: 'Web App',
     description:
@@ -156,7 +208,7 @@ const projects = [
     },
   },
   {
-    id: 7,
+    id: 9,
     title: 'Event Planners Tanzania',
     category: 'Website',
     description:
@@ -182,7 +234,7 @@ const projects = [
     },
   },
   {
-    id: 8,
+    id: 10,
     title: 'Zeember',
     category: 'Web App',
     description:

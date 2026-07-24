@@ -7,8 +7,8 @@ import styles from '../styles/Contact.module.css'
 
 const INITIAL_FORM = { name: '', email: '', projectType: '', message: '' }
 
-const SERVICE_OPTIONS = services.flatMap(({ tier, items }) =>
-  items.map(item => ({ value: item.name, label: `${item.name} (${tier})` }))
+const SERVICE_OPTIONS = services.flatMap(({ category, items }) =>
+  items.map(item => ({ value: item, label: `${item} (${category})` }))
 )
 
 export default function Contact() {
