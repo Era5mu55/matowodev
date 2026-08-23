@@ -1,10 +1,24 @@
+import { useLocation } from 'react-router-dom'
+import { useWhatsAppMessage } from '../context/WhatsAppContext'
 import styles from '../styles/WhatsAppFAB.module.css'
 
-const WA_URL = `https://wa.me/255786000551?text=${encodeURIComponent(
-  "Hi Erasmus, I found your portfolio and I'd like to discuss a project."
-)}`
+const DEFAULT_MESSAGES = {
+  '/': "Hi Erasmus, I found your portfolio and I'd like to discuss a project.",
+  '/projects': "Hi Erasmus, I've been browsing your projects and I'd like to discuss something similar for my business.",
+  '/quote': "Hi Erasmus, I'd like to get an instant quote for my project.",
+}
+
+function defaultForPath(pathname) {
+  return DEFAULT_MESSAGES[pathname] ?? DEFAULT_MESSAGES['/']
+}
 
 export default function WhatsAppFAB() {
+  const { pathname } = useLocation()
+  const { message } = useWhatsAppMessage()
+  const WA_URL = `https://wa.me/255786000551?text=${encodeURIComponent(
+    message || defaultForPath(pathname)
+  )}`
+
   return (
     <div className={styles.wrap}>
       <a

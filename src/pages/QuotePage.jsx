@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { useExchangeRates, useCurrencyPref, formatPrice } from '../utils/currency'
+import { useWhatsAppMessage } from '../context/WhatsAppContext'
 import CurrencySwitcher from '../components/CurrencySwitcher'
 import PageBanner from '../components/PageBanner'
 import styles from '../styles/QuotePage.module.css'
@@ -143,7 +144,14 @@ export default function QuotePage() {
     "Let's discuss!",
   ] : ["Hi Erasmus, I'd like to discuss a web project with you."]
 
-  const waUrl = `https://wa.me/255786000551?text=${encodeURIComponent(waLines.join('\n'))}`
+  const waMessage = waLines.join('\n')
+  const waUrl = `https://wa.me/255786000551?text=${encodeURIComponent(waMessage)}`
+
+  const { setMessage } = useWhatsAppMessage()
+  useEffect(() => {
+    setMessage(waMessage)
+    return () => setMessage(null)
+  }, [waMessage, setMessage])
 
   return (
     <div className={styles.page}>
