@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useLang } from '../context/LanguageContext'
 import { t } from '../data/translations'
 import styles from '../styles/Footer.module.css'
+import ConsultationModal from './ConsultationModal'
 
 const SOCIAL_LINKS = [
   {
@@ -34,8 +36,18 @@ const SOCIAL_LINKS = [
     ),
   },
   {
+    label: 'Fiverr',
+    href: 'https://www.fiverr.com/s/aexa74Q',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M20.59 13.41 12 22l-9-9V5a2 2 0 0 1 2-2h8l9 9a2 2 0 0 1 .59 1.41z"/>
+        <circle cx="7.5" cy="7.5" r="1.5" fill="currentColor" stroke="none"/>
+      </svg>
+    ),
+  },
+  {
     label: 'Email',
-    href: 'mailto:hello@matowodev.com',
+    isModal: true,
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -48,11 +60,11 @@ const SOCIAL_LINKS = [
 export default function Footer() {
   const year = new Date().getFullYear()
   const { lang } = useLang()
+  const [modalOpen, setModalOpen] = useState(false)
 
   const navLinks = [
     { label: t.nav.work[lang],     href: '/#work' },
     { label: t.nav.services[lang], href: '/#services' },
-    { label: t.nav.blog[lang],     href: '/blog', isRoute: true },
     { label: t.nav.contact[lang],  href: '/#contact' },
   ]
 
@@ -61,39 +73,57 @@ export default function Footer() {
       <div className={`container ${styles.inner}`}>
 
         <div className={styles.top}>
-          <div className={styles.brand}>
+          <div className={styles.col}>
             <a href="/" className={styles.logo}>
               Matowo <span className={styles.logoAccent}>Dev</span>
             </a>
             <p className={styles.tagline}>{t.footer.tagline[lang]}</p>
           </div>
 
-          <nav aria-label="Footer navigation" className={styles.nav}>
-            <ul className={styles.navLinks}>
-              {navLinks.map(({ label, href, isRoute }) => (
-                <li key={href}>
-                  {isRoute
-                    ? <Link to={href} className={styles.navLink}>{label}</Link>
-                    : <a href={href} className={styles.navLink}>{label}</a>
-                  }
-                </li>
-              ))}
-            </ul>
-          </nav>
+          <div className={styles.col}>
+            <span className={styles.colLabel}>Site</span>
+            <nav aria-label="Footer navigation">
+              <ul className={styles.navLinks}>
+                {navLinks.map(({ label, href, isRoute }) => (
+                  <li key={href}>
+                    {isRoute
+                      ? <Link to={href} className={styles.navLink}>{label}</Link>
+                      : <a href={href} className={styles.navLink}>{label}</a>
+                    }
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
 
-          <div className={styles.social}>
-            {SOCIAL_LINKS.map(({ label, href, icon }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noreferrer noopener"
-                className={styles.socialLink}
-                aria-label={label}
-              >
-                {icon}
-              </a>
-            ))}
+          <div className={styles.col}>
+            <span className={styles.colLabel}>Connect</span>
+            <div className={styles.social}>
+              {SOCIAL_LINKS.map(({ label, href, icon, isModal }) => (
+                isModal ? (
+                  <button
+                    key={label}
+                    type="button"
+                    onClick={() => setModalOpen(true)}
+                    className={styles.socialLink}
+                    aria-label={label}
+                  >
+                    {icon}
+                  </button>
+                ) : (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className={styles.socialLink}
+                    aria-label={label}
+                  >
+                    {icon}
+                  </a>
+                )
+              ))}
+            </div>
           </div>
         </div>
 
@@ -110,6 +140,8 @@ export default function Footer() {
         </div>
 
       </div>
+
+      <ConsultationModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </footer>
   )
 }

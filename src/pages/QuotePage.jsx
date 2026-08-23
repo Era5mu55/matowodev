@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import emailjs from '@emailjs/browser'
 import { useExchangeRates, useCurrencyPref, formatPrice } from '../utils/currency'
 import CurrencySwitcher from '../components/CurrencySwitcher'
+import PageBanner from '../components/PageBanner'
 import styles from '../styles/QuotePage.module.css'
 
 const PROJECT_TYPES = [
@@ -88,26 +88,27 @@ export default function QuotePage() {
     setError('')
 
     try {
-      await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        {
-          name:              form.name,
-          email:             form.email,
-          phone:             form.phone || 'Not provided',
-          project_type:      selectedType.label,
-          addons:            addonLabels,
-          pages:             String(pages),
-          timeline:          urgent ? 'Urgent (rush delivery)' : 'Standard',
+      const res = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'quote',
+          name: form.name,
+          email: form.email,
+          phone: form.phone || 'Not provided',
+          projectType: selectedType.label,
+          addons: addonLabels,
+          pages: String(pages),
+          timeline: urgent ? 'Urgent (rush delivery)' : 'Standard',
           currency,
-          subtotal:          fp(subtotalUsd),
-          urgent_premium:    urgent ? fp(urgentSurchargeUsd) : 'N/A',
-          total:             fp(totalUsd),
-          monthly_recurring: monthlyRecurringUsd > 0 ? `${fp(monthlyRecurringUsd)}/mo` : 'None',
-          message:           form.notes || 'No additional notes.',
-        },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-      )
+          subtotal: fp(subtotalUsd),
+          urgentPremium: urgent ? fp(urgentSurchargeUsd) : 'N/A',
+          total: fp(totalUsd),
+          monthlyRecurring: monthlyRecurringUsd > 0 ? `${fp(monthlyRecurringUsd)}/mo` : 'None',
+          notes: form.notes || 'No additional notes.',
+        }),
+      })
+      if (!res.ok) throw new Error('Request failed')
       setSent(true)
     } catch {
       setError('Something went wrong. Please try again or reach out via WhatsApp.')
@@ -146,18 +147,13 @@ export default function QuotePage() {
 
   return (
     <div className={styles.page}>
-      <div className={`container ${styles.inner}`}>
+      <PageBanner
+        title="Get an Instant Quote"
+        subtitle="Configure your project and see a live estimate — no surprises, no commitment."
+        backLabel="Back to portfolio"
+      />
 
-        <header className={styles.pageHeader}>
-          <Link to="/" className={styles.back}>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M10 12L6 8l4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            Back to portfolio
-          </Link>
-          <h1 className={styles.title}>Get an Instant Quote</h1>
-          <p className={styles.subtitle}>Configure your project and see a live estimate — no surprises, no commitment.</p>
-        </header>
+      <div className={`container ${styles.inner}`}>
 
         <div className={styles.layout}>
 
@@ -165,7 +161,7 @@ export default function QuotePage() {
 
             <section className={styles.step}>
               <h2 className={styles.stepTitle}>
-                <span className={styles.stepNum}>1</span>
+                <span className={`numberBadge ${styles.stepNum}`}>1</span>
                 What are you building?
               </h2>
               <div className={styles.typeGrid}>
@@ -187,7 +183,7 @@ export default function QuotePage() {
 
             <section className={styles.step}>
               <h2 className={styles.stepTitle}>
-                <span className={styles.stepNum}>2</span>
+                <span className={`numberBadge ${styles.stepNum}`}>2</span>
                 Add-ons
               </h2>
               <div className={styles.addonList}>
@@ -213,7 +209,7 @@ export default function QuotePage() {
 
             <section className={styles.step}>
               <h2 className={styles.stepTitle}>
-                <span className={styles.stepNum}>3</span>
+                <span className={`numberBadge ${styles.stepNum}`}>3</span>
                 How many pages?
                 <span className={styles.stepNote}>
                   {FREE_PAGES} included free, +{formatPrice(PER_EXTRA_PAGE_USD, currency, rates)} per extra
@@ -240,7 +236,7 @@ export default function QuotePage() {
 
             <section className={styles.step}>
               <h2 className={styles.stepTitle}>
-                <span className={styles.stepNum}>4</span>
+                <span className={`numberBadge ${styles.stepNum}`}>4</span>
                 Timeline
               </h2>
               <div className={styles.timelineOptions}>
@@ -259,7 +255,7 @@ export default function QuotePage() {
 
             <section className={styles.step}>
               <h2 className={styles.stepTitle}>
-                <span className={styles.stepNum}>5</span>
+                <span className={`numberBadge ${styles.stepNum}`}>5</span>
                 Your preferred currency
               </h2>
               <CurrencySwitcher active={currency} onSelect={setCurrency} isLive={isLive} />
@@ -267,7 +263,7 @@ export default function QuotePage() {
 
             <section className={styles.step}>
               <h2 className={styles.stepTitle}>
-                <span className={styles.stepNum}>6</span>
+                <span className={`numberBadge ${styles.stepNum}`}>6</span>
                 Your contact details
               </h2>
 

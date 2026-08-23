@@ -36,10 +36,17 @@ const ICONS = {
   ),
 }
 
-function CategoryCard({ category, icon, tagline, items }) {
+function CategoryCard({ category, icon, tagline, items, image }) {
   return (
     <article className={styles.card}>
-      <div className={styles.iconBadge} aria-hidden="true">
+      <div
+        className={styles.bgImage}
+        style={{ backgroundImage: `url(${image})` }}
+        aria-hidden="true"
+      />
+      <div className={styles.overlay} aria-hidden="true" />
+
+      <div className={`numberBadge ${styles.iconBadge}`} aria-hidden="true">
         {ICONS[icon]}
       </div>
 
@@ -67,7 +74,7 @@ export default function Services() {
       <div className={`container ${styles.inner}`}>
 
         <header className={styles.header}>
-          <span className={styles.eyebrow}>Services</span>
+          <span className="eyebrow">Services</span>
           <h2 className={styles.heading}>What I Can Build For You</h2>
           <p className={styles.sub}>
             From concept to launch — websites, apps, hosting, and branding, all under one roof.

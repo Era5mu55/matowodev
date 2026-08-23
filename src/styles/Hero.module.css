@@ -15,8 +15,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(ellipse 70% 50% at 15% 40%, rgba(79, 70, 229, 0.18) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 85% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse 70% 50% at 15% 40%, rgba(79, 70, 229, 0.24) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 20%, rgba(16, 185, 129, 0.16) 0%, transparent 50%),
     repeating-linear-gradient(
       0deg,
       transparent,
@@ -58,19 +58,105 @@
   animation: fadeInUp 0.7s ease both;
 }
 
-/* ── Image column ── */
-.imageCol {
+/* ── Side column (CTA card) ── */
+.sideCol {
   display: none;
+  position: relative;
   animation: fadeInUp 0.7s 0.2s ease both;
 }
 
-.photo {
-  width: 100%;
-  max-height: 480px;
-  object-fit: cover;
-  object-position: top;
+.photoGlow {
+  position: absolute;
+  inset: -10%;
+  z-index: 0;
+  background: radial-gradient(ellipse 60% 55% at 50% 40%, rgba(79, 70, 229, 0.35) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+/* ── CTA card ── */
+.ctaCard {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 2rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  display: block;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.ctaCardEyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-cta);
+}
+
+.ctaCardHeading {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--color-text);
+}
+
+.ctaCardText {
+  font-size: 0.92rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+.ctaCardBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-cta);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.ctaCardBtn:hover {
+  opacity: 0.88;
+  transform: translateY(-2px);
+}
+
+.ctaCardList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-block-start: 0.75rem;
+  border-block-start: 1px solid var(--color-border);
+  list-style: none;
+}
+
+.ctaCardList li {
+  position: relative;
+  padding-inline-start: 1.1rem;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.ctaCardList li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--color-cta);
 }
 
 /* ── Available badge ── */
@@ -82,10 +168,11 @@
   background-color: rgba(16, 185, 129, 0.1);
   border: 1px solid rgba(16, 185, 129, 0.25);
   border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 0.78rem;
+  font-weight: 600;
   color: var(--color-cta);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   animation: fadeInUp 0.7s 0.05s ease both;
 }
 
@@ -227,37 +314,6 @@
   transform: translateY(0);
 }
 
-/* ── Stats bar ── */
-.stats {
-  display: flex;
-  gap: 1.75rem;
-  padding-block-start: 1.25rem;
-  border-block-start: 1px solid var(--color-border);
-  margin-block-start: 0.25rem;
-  animation: fadeInUp 0.7s 0.35s ease both;
-}
-
-.stat {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.statValue {
-  font-family: var(--font-display);
-  font-size: clamp(1.4rem, 3.5vw, 1.9rem);
-  font-weight: 800;
-  color: var(--color-accent);
-  line-height: 1;
-  letter-spacing: -0.02em;
-}
-
-.statLabel {
-  font-size: 0.75rem;
-  color: var(--color-muted);
-  white-space: nowrap;
-}
-
 /* ── Scroll indicator ── */
 .scrollIndicator {
   position: absolute;
@@ -320,23 +376,18 @@
     white-space: nowrap;
   }
 
-  .imageCol {
+  .sideCol {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-self: stretch;
-  }
-
-  .photo {
-    width: 100%;
-    max-height: 480px;
   }
 }
 
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .content, .badge, .identity, .headline,
-  .subtitle, .bio, .actions, .stats {
+  .subtitle, .bio, .actions {
     animation: none;
   }
 

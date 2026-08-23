@@ -16,7 +16,7 @@ function FAQItem({ id, question, answer, isOpen, onToggle }) {
         <span className={styles.question}>{question}</span>
         <span className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ''}`} aria-hidden="true">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </span>
       </button>
@@ -45,7 +45,7 @@ export default function FAQ() {
     <section id="faq" className={styles.section}>
       <div className={`container ${styles.inner}`}>
         <div className={styles.header}>
-          <span className={styles.eyebrow}>{t.sections.faqEyebrow[lang]}</span>
+          <span className="eyebrow">{t.sections.faqEyebrow[lang]}</span>
           <h2 className={styles.heading}>{t.sections.faqHeading[lang]}</h2>
         </div>
 

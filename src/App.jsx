@@ -1,31 +1,31 @@
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import StatStrip from './components/StatStrip'
 import Projects from './components/Projects'
 import Services from './components/Services'
 import Process from './components/Process'
 import Consultation from './components/Consultation'
 import Testimonials from './components/Testimonials'
-import Blog from './components/Blog'
+import FiverrPromo from './components/FiverrPromo'
 import FAQ from './components/FAQ'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import WhatsAppFAB from './components/WhatsAppFAB'
 import QuotePage from './pages/QuotePage'
-import BlogPage from './pages/BlogPage'
-import ArticlePage from './pages/ArticlePage'
 import AllProjectsPage from './pages/AllProjectsPage'
 
 function HomePage() {
   return (
     <main>
       <Hero />
+      <StatStrip />
       <Projects />
       <Services />
       <Process />
       <Consultation />
       <Testimonials />
-      <Blog />
+      <FiverrPromo />
       <FAQ />
       <Contact />
     </main>
@@ -40,8 +40,6 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/projects" element={<AllProjectsPage />} />
         <Route path="/quote" element={<QuotePage />} />
-        <Route path="/blog" element={<BlogPage />} />
-        <Route path="/blog/:slug" element={<ArticlePage />} />
       </Routes>
       <Footer />
       <WhatsAppFAB />

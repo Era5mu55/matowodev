@@ -1,24 +1,55 @@
-.fab {
+.wrap {
   position: fixed;
   bottom: 1.5rem;
   left: 1.5rem;
   z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.fab {
+  flex-shrink: 0;
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background-color: #25D366;
+  background-color: var(--color-cta);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.45);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-decoration: none;
 }
 
 .fab:hover {
   transform: scale(1.08) translateY(-2px);
-  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.55);
+  box-shadow: 0 8px 28px rgba(16, 185, 129, 0.55);
+}
+
+.label {
+  display: none;
+  padding: 0.6rem 1.1rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: border-color 0.2s;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .label {
+    display: inline-flex;
+    align-items: center;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

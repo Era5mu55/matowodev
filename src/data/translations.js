@@ -1,12 +1,11 @@
 // UI-label translations only.
-// Project titles, service names, testimonials, and blog content are intentionally NOT translated.
+// Project titles, service names, and testimonials are intentionally NOT translated.
 
 export const t = {
   nav: {
     work:     { en: 'Work',        sw: 'Kazi' },
     services: { en: 'Services',    sw: 'Huduma' },
     contact:  { en: 'Contact',     sw: 'Wasiliana' },
-    blog:     { en: 'Blog',        sw: 'Blogu' },
     getQuote: { en: 'Get a Quote', sw: 'Pata Bei' },
     hireMe:   { en: 'Hire Me',     sw: 'Niajiri' },
   },
@@ -34,10 +33,6 @@ export const t = {
     clientsEyebrow:    { en: 'Currently Building For',  sw: 'Ninajengea Sasa' },
     testimonialsEyebrow: { en: 'Social proof',          sw: 'Ushuhuda' },
     testimonialsHeading: { en: 'What Clients Say',      sw: 'Wanachosema Wateja' },
-    blogEyebrow:       { en: 'Blog',                   sw: 'Blogu' },
-    blogHeading:       { en: 'Web Dev Insights',        sw: 'Maarifa ya Maendeleo ya Wavuti' },
-    blogSub:           { en: 'Practical guides for East African businesses navigating the web.', sw: 'Mwongozo wa vitendo kwa biashara za Afrika Mashariki zinazotumia wavuti.' },
-    blogAllPosts:      { en: 'View all posts →',        sw: 'Tazama machapisho yote →' },
     faqEyebrow:        { en: 'FAQ',                    sw: 'Maswali' },
     faqHeading:        { en: 'Common Questions',        sw: 'Maswali ya Kawaida' },
     contactEyebrow:    { en: 'Get in touch',            sw: 'Wasiliana Nami' },
@@ -48,8 +43,8 @@ export const t = {
   },
   footer: {
     tagline: {
-      en: 'I build Web Apps, Landing Pages, Business Sites & Blog Platforms that grow businesses.',
-      sw: 'Ninajenga programu za wavuti, kurasa za kutua, tovuti za biashara na majukwaa ya blogu yanayokua biashara.',
+      en: 'I build Web Apps, Landing Pages & Business Sites that grow businesses.',
+      sw: 'Ninajenga programu za wavuti, kurasa za kutua na tovuti za biashara zinazokua biashara.',
     },
   },
 }

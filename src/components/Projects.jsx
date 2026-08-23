@@ -73,7 +73,7 @@ export default function Projects() {
       <div className={`container ${styles.inner}`}>
 
         <header className={styles.header}>
-          <span className={styles.eyebrow}>Portfolio</span>
+          <span className="eyebrow">Portfolio</span>
           <h2 className={styles.heading}>Recent Work</h2>
           <p className={styles.sub}>
             A selection of projects I&apos;ve built for clients and personal use.

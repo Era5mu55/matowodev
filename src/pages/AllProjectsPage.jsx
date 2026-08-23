@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import projects from '../data/projects'
 import { ProjectCard } from '../components/Projects'
 import CaseStudyModal from '../components/CaseStudyModal'
+import PageBanner from '../components/PageBanner'
 import styles from '../styles/AllProjectsPage.module.css'
 
 export default function AllProjectsPage() {
@@ -22,21 +22,13 @@ export default function AllProjectsPage() {
 
   return (
     <div className={styles.page}>
-      <div className={`container ${styles.inner}`}>
+      <PageBanner
+        eyebrow="Portfolio"
+        title="All Projects"
+        subtitle="Every web app and website I've built — from job platforms to insurance calculators."
+      />
 
-        <header className={styles.pageHeader}>
-          <Link to="/" className={styles.back}>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M10 12L6 8l4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            Back to home
-          </Link>
-          <span className={styles.eyebrow}>Portfolio</span>
-          <h1 className={styles.heading}>All Projects</h1>
-          <p className={styles.sub}>
-            Every web app and website I&apos;ve built — from job platforms to insurance calculators.
-          </p>
-        </header>
+      <div className={`container ${styles.inner}`}>
 
         <div className={styles.grid}>
           {projects.map(project => (

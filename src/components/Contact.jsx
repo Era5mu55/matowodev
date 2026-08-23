@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import emailjs from '@emailjs/browser'
 import { services } from '../data/services'
 import { useLang } from '../context/LanguageContext'
 import { t } from '../data/translations'
@@ -32,20 +31,19 @@ export default function Contact() {
     e.preventDefault()
     setStatus('sending')
 
-    const templateParams = {
-      name:         form.name,
-      email:        form.email,
-      project_type: form.projectType || 'Not specified',
-      message:      form.message,
-    }
-
     try {
-      await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        templateParams,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-      )
+      const res = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'contact',
+          name: form.name,
+          email: form.email,
+          projectType: form.projectType || 'Not specified',
+          message: form.message,
+        }),
+      })
+      if (!res.ok) throw new Error('Request failed')
       setStatus('success')
       setForm(INITIAL_FORM)
     } catch {
@@ -61,7 +59,7 @@ export default function Contact() {
       <div className={`container ${styles.inner}`}>
 
         <div className={styles.info}>
-          <span className={styles.eyebrow}>{t.sections.contactEyebrow[lang]}</span>
+          <span className="eyebrow">{t.sections.contactEyebrow[lang]}</span>
           <h2 className={styles.heading}>{t.sections.contactHeading[lang]}</h2>
           <p className={styles.sub}>{t.sections.contactSub[lang]}</p>
 
@@ -71,8 +69,8 @@ export default function Contact() {
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <polyline points="22,6 12,13 2,6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-              <a href="mailto:hello@matowodev.com" className={styles.detailLink}>
-                hello@matowodev.com
+              <a href="mailto:info@matowodev.com" className={styles.detailLink}>
+                info@matowodev.com
               </a>
             </li>
             <li className={styles.detail}>

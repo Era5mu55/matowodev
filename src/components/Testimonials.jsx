@@ -73,7 +73,7 @@ export default function Testimonials() {
       <div className={`container ${styles.inner}`}>
 
         <header className={styles.header}>
-          <span className={styles.eyebrow}>Social proof</span>
+          <span className="eyebrow">Social proof</span>
           <h2 className={styles.heading}>What Clients Say</h2>
           <p className={styles.sub}>
             Don&apos;t take my word for it — here&apos;s what people I&apos;ve worked with have to say.

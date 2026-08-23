@@ -2,6 +2,7 @@ export const services = [
   {
     category: 'Web Design & Development',
     icon: 'web',
+    image: '/images/services/web-design.jpg',
     tagline: 'Fast, modern websites and custom web apps built to convert visitors into clients.',
     items: [
       'Business & Corporate Websites',
@@ -16,6 +17,7 @@ export const services = [
   {
     category: 'Mobile Apps',
     icon: 'mobile',
+    image: '/images/services/mobile-apps.jpg',
     tagline: 'Cross-platform mobile apps that bring your business to iOS and Android.',
     items: [
       'iOS & Android Apps',
@@ -27,6 +29,7 @@ export const services = [
   {
     category: 'Hosting & Maintenance',
     icon: 'hosting',
+    image: '/images/services/hosting.jpg',
     tagline: 'Reliable hosting and ongoing support so your site stays fast and online.',
     items: [
       'Domain Registration & Setup',
@@ -39,6 +42,7 @@ export const services = [
   {
     category: 'Graphics & Branding',
     icon: 'graphics',
+    image: '/images/services/branding.jpg',
     tagline: 'Visual identity and marketing assets that match your brand.',
     items: [
       'Logo Design',

@@ -16,14 +16,6 @@
   gap: 0.6rem;
 }
 
-.eyebrow {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-}
-
 .heading {
   color: var(--color-text);
 }
@@ -42,48 +34,74 @@
   gap: 1.5rem;
 }
 
-/* ── Category card ── */
+/* ── Category card ──
+   Background photo + fixed dark overlay regardless of theme — every text color
+   below is hardcoded to stay legible against it in light mode too. */
 .card {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-lg);
   padding: 1.75rem;
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .card:hover {
-  border-color: rgba(79, 70, 229, 0.3);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+  border-color: rgba(79, 70, 229, 0.4);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  transform: translateY(-3px);
 }
 
-/* ── Icon badge ── */
+.bgImage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .bgImage {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(6, 9, 19, 0.72) 0%, rgba(6, 9, 19, 0.92) 55%, rgba(6, 9, 19, 0.97) 100%);
+}
+
+/* ── Icon badge (extends shared .numberBadge) ── */
 .iconBadge {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  z-index: 2;
   width: 48px;
   height: 48px;
-  border-radius: var(--radius-md);
-  background-color: rgba(79, 70, 229, 0.12);
-  color: var(--color-accent);
 }
 
 .cardHeading {
-  color: var(--color-text);
+  position: relative;
+  z-index: 2;
+  color: #F8F7F3;
 }
 
 .tagline {
+  position: relative;
+  z-index: 2;
   font-size: 0.9rem;
-  color: var(--color-muted);
+  color: rgba(248, 247, 243, 0.75);
   line-height: 1.6;
   margin-top: -0.4rem;
 }
 
 /* ── What's included checklist ── */
 .included {
+  position: relative;
+  z-index: 2;
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -96,7 +114,7 @@
   align-items: center;
   gap: 0.6rem;
   font-size: 0.9rem;
-  color: var(--color-text);
+  color: rgba(248, 247, 243, 0.92);
   line-height: 1.4;
 }
 
@@ -119,7 +137,7 @@
   justify-content: center;
   gap: 0.5rem;
   padding: 0.8rem 1.6rem;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-full);
   font-family: var(--font-display);
   font-size: 0.95rem;
   font-weight: 600;

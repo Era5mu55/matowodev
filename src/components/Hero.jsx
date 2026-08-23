@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react'
 import heroData from '../data/hero'
 import { useLang } from '../context/LanguageContext'
 import { t } from '../data/translations'
-import useCountUp from '../utils/useCountUp'
 import styles from '../styles/Hero.module.css'
 
 const ROLES = heroData.roles
@@ -45,19 +44,9 @@ function useTypewriter() {
   return text
 }
 
-function AnimatedStat({ target, suffix, label }) {
-  const [display, ref] = useCountUp(target, suffix)
-  return (
-    <div ref={ref} className={styles.stat}>
-      <span className={styles.statValue}>{display}</span>
-      <span className={styles.statLabel}>{label}</span>
-    </div>
-  )
-}
-
 export default function Hero() {
   const typedText = useTypewriter()
-  const { bio, seoText, cta, available, stats, identity } = heroData
+  const { bio, seoText, cta, available, identity } = heroData
   const { lang } = useLang()
 
   return (
@@ -104,23 +93,30 @@ export default function Hero() {
             </a>
           </div>
 
-          <div className={styles.stats} aria-label="Quick stats">
-            {stats.map(({ target, suffix, label }) => (
-              <AnimatedStat key={label} target={target} suffix={suffix} label={label} />
-            ))}
-          </div>
-
           <p className={styles.seoText}>{seoText}</p>
 
         </div>
 
-        <div className={styles.imageCol}>
-          <img
-            src="/images/erasmus.png"
-            alt="Erasmus Matowo — Web Developer based in Arusha Tanzania"
-            className={styles.photo}
-            loading="eager"
-          />
+        <div className={styles.sideCol}>
+          <div className={styles.photoGlow} aria-hidden="true" />
+          <div className={styles.ctaCard}>
+            <span className={styles.ctaCardEyebrow}>Free &amp; instant</span>
+            <h3 className={styles.ctaCardHeading}>Get a project estimate in 60 seconds</h3>
+            <p className={styles.ctaCardText}>
+              Answer a few quick questions and see a live price — no calls, no back-and-forth.
+            </p>
+            <a href={cta.secondary.href} className={styles.ctaCardBtn}>
+              {t.hero.getQuote[lang]}
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
+            <ul className={styles.ctaCardList}>
+              <li>Live pricing in USD, TZS, KES &amp; UGX</li>
+              <li>No obligation</li>
+              <li>Reply within 1 business day</li>
+            </ul>
+          </div>
         </div>
         </div>
       </div>

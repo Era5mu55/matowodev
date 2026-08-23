@@ -38,7 +38,6 @@ export default function Navbar() {
   const navLinks = [
     { label: t.nav.work[lang],     href: '/#work' },
     { label: t.nav.services[lang], href: '/#services' },
-    { label: t.nav.blog[lang],     href: '/blog', isRoute: true },
     { label: t.nav.contact[lang],  href: '/#contact' },
   ]
 

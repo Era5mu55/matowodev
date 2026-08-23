@@ -15,13 +15,7 @@
   margin: 0 auto;
 }
 
-.eyebrow {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-accent);
+.kicker {
   margin-bottom: 0.75rem;
 }
 
@@ -39,61 +33,36 @@
   line-height: 1.6;
 }
 
-/* Steps list */
+/* Steps grid */
 .steps {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
 }
 
 .step {
   display: flex;
-  gap: 1.25rem;
+  flex-direction: column;
   align-items: flex-start;
+  gap: 0.9rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
-/* Number column */
-.numberWrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-shrink: 0;
+.step:hover {
+  border-color: rgba(79, 70, 229, 0.3);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  transform: translateY(-3px);
 }
 
 .number {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background-color: var(--color-accent);
-  color: #fff;
-  font-family: var(--font-display);
   font-size: 0.85rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.connector {
-  width: 2px;
-  flex: 1;
-  min-height: 2rem;
-  background: linear-gradient(to bottom, var(--color-accent), transparent);
-  margin: 0.25rem 0;
-}
-
-.step:last-child .connector {
-  display: none;
-}
-
-/* Body */
-.body {
-  padding-bottom: 2.5rem;
-  padding-top: 0.6rem;
 }
 
 .title {
@@ -101,54 +70,19 @@
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--color-text);
-  margin-bottom: 0.4rem;
 }
 
 .desc {
   font-size: 0.95rem;
   color: var(--color-muted);
   line-height: 1.65;
-  max-width: 480px;
 }
 
 /* Tablet: 2-column grid */
 @media (min-width: 768px) {
   .steps {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-  }
-
-  .step {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .numberWrap {
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-  }
-
-  .connector {
-    width: auto;
-    height: 2px;
-    flex: 1;
-    min-height: unset;
-    background: linear-gradient(to right, var(--color-accent), transparent);
-    margin: 0 0.25rem;
-  }
-
-  /* Hide connector on 2nd and 4th items (right column) */
-  .step:nth-child(2n) .connector,
-  .step:last-child .connector {
-    display: none;
-  }
-
-  .body {
-    padding-bottom: 0;
-    padding-top: 0;
   }
 }
 
@@ -156,14 +90,5 @@
 @media (min-width: 1100px) {
   .steps {
     grid-template-columns: repeat(4, 1fr);
-  }
-
-  /* Show connector on all except last */
-  .step:nth-child(2n) .connector {
-    display: block;
-  }
-
-  .step:last-child .connector {
-    display: none;
   }
 }

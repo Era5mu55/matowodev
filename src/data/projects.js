@@ -34,7 +34,7 @@ const projects = [
     tags: ['JavaScript', 'CSS'],
     image: '/images/OlseroExpedition.png',
     imageAlt: 'Olsero Expedition — Safari and trekking operator website built by Matowo Dev',
-    liveUrl: 'https://www.olseroexpedition.co.tz/',
+    liveUrl: 'https://www.olseroexpedition.com/',
     repoUrl: null,
     caseStudy: {
       problem:
@@ -257,6 +257,84 @@ const projects = [
       ],
       tech: ['Next.js', 'JavaScript', 'CSS'],
       duration: '5 weeks',
+    },
+  },
+  {
+    id: 11,
+    title: 'Hope Rising Congo',
+    category: 'Website',
+    description:
+      'Premium NGO marketing site for a foundation working across the Democratic Republic of Congo — with a full admin CMS for stories, programs, and comment moderation, plus AI-generated image alt-text.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+    image: '/images/HopeRisingCongoNew.png',
+    imageAlt: 'Hope Rising Congo Foundation — NGO website built by Matowo Dev',
+    liveUrl: 'https://hoperisingcongo.org',
+    repoUrl: null,
+    caseStudy: {
+      problem:
+        'Hope Rising Congo Foundation needed a credible, donor-facing web presence that could tell its story across education, healthcare, and economic-opportunity programs in the DRC — plus a way for the client to publish new stories and programs without needing a developer for every update.',
+      solution:
+        'Built a Next.js site on Cloudflare Workers with a password-protected admin dashboard backed by Cloudflare D1, letting the client manage stories, programs, and comment moderation directly. Added R2-backed image uploads with Workers AI auto-generating alt-text for accessibility, plus a governance-page newsletter signup.',
+      results: [
+        'Fully client-editable CMS — stories and programs publish without a redeploy',
+        'AI-generated alt-text on every uploaded image for accessibility',
+        'Custom domain live on Cloudflare with automatic GitHub Actions deploys',
+        'Site reactions and comment moderation built directly into the admin panel',
+      ],
+      tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Cloudflare D1', 'Cloudflare R2', 'Workers AI'],
+      duration: '5 weeks',
+    },
+  },
+  {
+    id: 12,
+    title: 'Olouwaru Safari',
+    category: 'Website',
+    description:
+      'Multilingual Tanzania safari and trekking brand site covering wildlife safaris, mountain trekking, and beach stays — built for an international audience researching their trip in their own language.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+    image: '/images/OlouwaruSafariNew.png',
+    imageAlt: 'Olouwaru Safari — Tanzania safari and trekking website built by Matowo Dev',
+    liveUrl: 'https://olouwarusafari.com',
+    repoUrl: null,
+    caseStudy: {
+      problem:
+        'Olouwaru Safari needed a site that could win trust with international travelers researching Tanzania safaris, Kilimanjaro-region trekking, and beach add-ons in their own language, rather than a single English-only brochure site.',
+      solution:
+        'Built a Next.js site with locale-based routing covering destinations, tours, trekking, and stays, backed by a direct WhatsApp and enquiry flow. Designed for ongoing locale expansion so new languages can be added without restructuring content.',
+      results: [
+        'Full destination, tour, trekking, and stays coverage in one site',
+        'Locale-based routing built to expand into new languages over time',
+        'Direct WhatsApp contact integrated for fast inquiry response',
+        'Fast, modern Next.js build ready for international traffic',
+      ],
+      tech: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+      duration: '4 weeks',
+    },
+  },
+  {
+    id: 13,
+    title: 'Skyrose Premium Cleaning',
+    category: 'Website',
+    description:
+      'Executive-standard commercial and hospitality cleaning company site for Dar es Salaam — covering office contracts, embassy/NGO accounts, and hotel turnover services. Launching soon.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+    image: '/images/SkyroseCleaningNew.png',
+    imageAlt: 'Skyrose Premium Cleaning — commercial cleaning company website built by Matowo Dev',
+    liveUrl: 'https://skyrosepremiumcleaning.co.tz',
+    repoUrl: null,
+    caseStudy: {
+      problem:
+        'Skyrose Premium Cleaning needed a site that reads as executive-grade rather than a generic local cleaning listing — one that could win recurring commercial and embassy/NGO contracts, not just one-off residential bookings.',
+      solution:
+        'Built a Next.js site structured around commercial and hospitality service lines, with a district-coverage breakdown for Dar es Salaam and a clear request-a-quote flow. Styled with a dark, premium palette to match the "executive-standard" positioning.',
+      results: [
+        'Separate commercial and hospitality service tracks presented clearly',
+        'District coverage (Masaki, Oysterbay, Msasani, Upanga, Posta) shown upfront',
+        'Structured, checklist-driven service breakdown builds B2B trust',
+        'Ready for launch on the client\'s own .co.tz domain',
+      ],
+      tech: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+      duration: '3 weeks',
     },
   },
 ]
