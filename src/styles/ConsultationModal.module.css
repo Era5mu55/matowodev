@@ -20,6 +20,8 @@
   max-width: 460px;
   max-height: 90vh;
   overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -28,6 +30,10 @@
   flex-direction: column;
   gap: 0.6rem;
   animation: slideUp 0.25s ease both;
+}
+
+.modal::-webkit-scrollbar {
+  display: none;
 }
 
 .closeBtn {
