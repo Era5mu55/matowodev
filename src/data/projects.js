@@ -389,6 +389,32 @@ const projects = [
       duration: '1 week',
     },
   },
+  {
+    id: 16,
+    title: 'PS Tanzania Ltd',
+    category: 'Web App',
+    description:
+      "Real estate marketplace and diaspora services hub for a Dar es Salaam developer — verified property listings, a reserve/checkout flow, and a full diaspora client portal for remote property management, acquisition, and investment.",
+    tags: ['Next.js', 'TypeScript', 'Supabase'],
+    image: '/images/PSTanzaniaLtd.png',
+    imageAlt: 'PS Tanzania Ltd — real estate marketplace and diaspora services hub built by Matowo Dev',
+    liveUrl: 'https://ps-tanzania-ltd.pstanzania.workers.dev',
+    repoUrl: null,
+    caseStudy: {
+      problem:
+        "Peters Sinkamba Tanzania Ltd needed one site to serve two audiences: buyers browsing verified titled properties in Kigamboni, and diaspora clients abroad who had to trust the company to manage, acquire, or build on property they couldn't personally inspect — with no way to track progress once they'd handed over money.",
+      solution:
+        "Built a bilingual (English/Swahili) Next.js marketplace with property listings, detail pages, a paid viewing-appointment flow, and a reserve/checkout flow, alongside a four-service Diaspora Hub covering property management, acquisition, build supervision, and personal investment. Layered a real authenticated client portal on top of the diaspora side — Supabase-backed case tracking with milestones, documents, maintenance approvals, messaging, and automatically generated monthly financial statements — so every capability marketed on the public pages is backed by a working feature, not just a form.",
+      results: [
+        'Every Diaspora Hub service has a matching real feature in an authenticated client portal, not just a marketing page',
+        'Monthly financial statements for Property Management and Investment clients generate automatically via a scheduled Cloudflare Worker job',
+        "Maintenance spend on a client's property requires their in-portal approval before any work is authorized",
+        'Bilingual EN/SW throughout, mobile-first for WhatsApp-driven diaspora traffic',
+      ],
+      tech: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS', 'Cloudflare Workers'],
+      duration: '1 week',
+    },
+  },
 ]
 
 export default projects
