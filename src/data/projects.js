@@ -398,7 +398,7 @@ const projects = [
     tags: ['Next.js', 'TypeScript', 'Supabase'],
     image: '/images/PSTanzaniaLtd.png',
     imageAlt: 'PS Tanzania Ltd — real estate marketplace and diaspora services hub built by Matowo Dev',
-    liveUrl: 'https://ps-tanzania-ltd.pstanzania.workers.dev',
+    liveUrl: 'https://psrealestate.co.tz',
     repoUrl: null,
     caseStudy: {
       problem:
