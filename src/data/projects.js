@@ -337,6 +337,58 @@ const projects = [
       duration: '3 weeks',
     },
   },
+  {
+    id: 14,
+    title: 'DamuLink',
+    category: 'Web App',
+    description:
+      "National blood-donor and hospital blood-stock platform for Tanzania — real-time donor registration, emergency blood search, and facility stock management across all NBTS zones plus Zanzibar.",
+    tags: ['Next.js', 'TypeScript', 'Supabase'],
+    image: '/images/DamuLinkApp.png',
+    imageAlt: 'DamuLink — national blood donor and hospital stock platform built by Matowo Dev',
+    liveUrl: 'https://app.damulinktz.org',
+    repoUrl: null,
+    caseStudy: {
+      problem:
+        "Tanzania's blood donors, hospitals, and patients had no shared real-time system — blood-stock visibility and donor matching ran on phone calls and paper registers, a dangerous gap in emergencies like postpartum hemorrhage and trauma where minutes to secure screened blood determine survival.",
+      solution:
+        "Built a Next.js and Supabase platform around five core flows: donor self-registration with NIDA ID and eligibility checks, a donor dashboard for donation history and alerts, a public no-login blood search with geolocation and zone-aware facility matching, a facility dashboard for live per-blood-group stock, inter-facility transfers, donation verification and emergency broadcast composing, and a public national statistics page. Every hospital and donor is mapped into one of Tanzania's 7 mainland NBTS zones or Zanzibar so a unit can be traced from donor to patient across zone boundaries.",
+      results: [
+        'Live donor registration and hospital stock tracking running across all 8 NBTS zones (mainland + Zanzibar)',
+        'Public, no-login blood search with GPS-aware results built for genuine emergencies',
+        'Facility dashboard unifies stock, transfers, verification, and emergency broadcasts in one workflow',
+        'Public statistics page structurally guarantees aggregate-only output — it cannot render individually identifiable donor or patient data',
+      ],
+      tech: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS', 'Cloudflare Workers'],
+      duration: '2 weeks',
+    },
+  },
+  {
+    id: 15,
+    title: 'DamuLink Foundation',
+    category: 'Website',
+    description:
+      "Institutional marketing and press site for the national initiative behind Tanzania's blood-donor platform — covering mission, NBTS zone coverage, hospital and funder partnerships, and a press newsroom.",
+    tags: ['React', 'TypeScript', 'Tailwind CSS'],
+    image: '/images/DamuLinkFoundation.png',
+    imageAlt: "DamuLink Foundation — institutional site for Tanzania's national blood initiative built by Matowo Dev",
+    liveUrl: 'https://damulinktz.org',
+    repoUrl: null,
+    caseStudy: {
+      problem:
+        'DamuLink needed an institutional face separate from its donor app — one that could win trust with hospitals, funders, and journalists by explaining the mission, governance, and national NBTS zone coverage behind the platform, and give press a real newsroom instead of a single pitch page.',
+      solution:
+        'Built a multi-page React and Tailwind CSS site with real path-based routing instead of hash fragments, so every page is independently indexable, covering mission and governance, a breakdown of the digital blood logistics grid, a live map of all 8 NBTS zones and partner facilities, dedicated partnership tracks for hospitals and funders with an inline inquiry form wired to Supabase, and a press newsroom with a fast-facts sheet and downloadable media kit. Deployed on Cloudflare Workers with per-route SEO metadata and canonical tags.',
+      results: [
+        'Real per-route URLs with correct canonical and OG tags — fixed a bug where every subpage told Google the homepage was canonical',
+        'Live partnership inquiry form submits directly to Supabase with a reference ID for follow-up',
+        'Full NBTS zone and 24-facility coverage map presented for hospitals and funders',
+        'Press newsroom with an institutional fast-facts sheet and downloadable media kit',
+      ],
+      tech: ['React', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Cloudflare Workers'],
+      duration: '1 week',
+    },
+  },
 ]
 
 export default projects
